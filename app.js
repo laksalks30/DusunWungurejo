@@ -166,13 +166,22 @@ document.addEventListener('DOMContentLoaded', () => {
     // EDIT DATA PROGRAM KERJA DI SINI:
     // ================================================================
     const prokersData = [
-        { id: 1, type: "Proker Bersama", owner_name: null, title: "Sosialisasi Pencegahan Stunting", description_markdown: "Sosialisasi kepada ibu-ibu PKK dan posyandu mengenai gizi balita dan pencegahan stunting sejak dini.", status: "Belum Mulai", image_urls: [] },
-        { id: 2, type: "Proker Bersama", owner_name: null, title: "Bimbingan Belajar Kreatif", description_markdown: "Kegiatan bimbingan belajar untuk anak-anak SD di Dusun Wungurejo dengan metode kreatif dan menyenangkan.", status: "Belum Mulai", image_urls: [] },
-        { id: 3, type: "Proker Bersama", owner_name: null, title: "Pembuatan Peta WebGIS", description_markdown: "Pemetaan potensi wilayah Dusun Wungurejo secara digital menggunakan teknologi Geographic Information System (GIS).", status: "Selesai", image_urls: [] },
-        { id: 4, type: "Proker Bersama", owner_name: null, title: "Digitalisasi UMKM Wungurejo", description_markdown: "Pendampingan pelaku UMKM lokal dalam memanfaatkan platform digital untuk pemasaran produk lebih luas.", status: "Belum Mulai", image_urls: [] },
-        { id: 5, type: "Proker Bersama", owner_name: null, title: "Rebranding Kemasan Produk", description_markdown: "Membantu UMKM lokal dalam mendesain ulang kemasan produk agar lebih menarik dan kompetitif di pasar modern.", status: "Belum Mulai", image_urls: [] },
-        { id: 6, type: "Proker Individu", owner_name: "Anas Rifai", title: "Sosialisasi Manajemen Keuangan", description_markdown: "Sosialisasi literasi keuangan dan manajemen usaha sederhana bagi pelaku UMKM di Dusun Wungurejo.", status: "Belum Mulai", image_urls: [] },
-        { id: 7, type: "Proker Individu", owner_name: "Laksa Atmaja", title: "Pengembangan Website KKN", description_markdown: "Membangun website profil digital KKN kelompok AA 84.095 sebagai media publikasi dan dokumentasi kegiatan.", status: "Selesai", image_urls: [] }
+        // PROKER BERSAMA
+        { id: 1, type: "Proker Bersama", owner_name: null, title: "Pembuatan Peta Administrasi Fisik dan Digital", description_markdown: "Pembuatan peta administrasi fisik dan digital Dusun Wungurejo, mencakup batas RT, fasilitas umum, dan potensi UMKM.", status: "Belum Mulai", image_urls: [] },
+        { id: 2, type: "Proker Bersama", owner_name: null, title: "Sosialisasi dan Pelatihan Pertanian KWT", description_markdown: "Sosialisasi dan pelatihan budidaya pertanian, pengendalian hama, dan pengolahan hasil panen untuk Kelompok Wanita Tani (KWT) Wungurejo.", status: "Belum Mulai", image_urls: [] },
+        { id: 3, type: "Proker Bersama", owner_name: null, title: "Penomoran Rumah & Database Warga", description_markdown: "Pembuatan sistem penomoran rumah terstandar dan pendataan database warga Dusun Wungurejo yang terdigitalisasi.", status: "Belum Mulai", image_urls: [] },
+        
+        // PROKER INDIVIDU
+        { id: 4, type: "Proker Individu", owner_name: "Ahmad Firdaus Nugrahadi", title: "Pemetaan Kualitas Air & Hidrogeologi", description_markdown: "Pemetaan kualitas air dan kondisi hidrogeologi pada sumur gali warga Dusun Wungurejo.", status: "Belum Mulai", image_urls: [] },
+        { id: 5, type: "Proker Individu", owner_name: "Fanida Rahmi Bay", title: "Identifikasi Kualitas Air Tanah", description_markdown: "Identifikasi kualitas air tanah dan air permukaan di wilayah Dusun Wungurejo.", status: "Belum Mulai", image_urls: [] },
+        { id: 6, type: "Proker Individu", owner_name: "Havez Reza Zein Abizard", title: "Uji Recovery Sumur Warga", description_markdown: "Melakukan uji recovery dan analisis ketersediaan air pada sumur-sumur Dusun Wungurejo.", status: "Belum Mulai", image_urls: [] },
+        { id: 7, type: "Proker Individu", owner_name: "Shofa’ Salsabila Ratna W", title: "Pembuatan Eco Enzyme", description_markdown: "Edukasi dan praktik pembuatan Eco Enzyme yang memanfaatkan limbah pertanian organik warga.", status: "Belum Mulai", image_urls: [] },
+        { id: 8, type: "Proker Individu", owner_name: "Laksana Atmaja Putra", title: "Pembangunan Website Desa", description_markdown: "Membangun website profil desa, katalog UMKM, serta digitalisasi logbook KKN.", status: "Belum Mulai", image_urls: [] },
+        { id: 9, type: "Proker Individu", owner_name: "Nabila Vanesya Fiorella", title: "Pestisida Nabati MICESSLA", description_markdown: "Edukasi dan praktik pembuatan pestisida nabati (MICESSLA) untuk membasmi hama tanaman secara alami.", status: "Belum Mulai", image_urls: [] },
+        { id: 10, type: "Proker Individu", owner_name: "Dian Meutia Zalianti", title: "Company Profile Usaha Madu", description_markdown: "Penyusunan Company Profile digital untuk meningkatkan profesionalitas Usaha Madu TBS.", status: "Belum Mulai", image_urls: [] },
+        { id: 11, type: "Proker Individu", owner_name: "Anas Rifai Prayogo", title: "Edukasi Keuangan Anak Usia Dini", description_markdown: "Memberikan edukasi dan literasi manajemen keuangan sejak dini untuk anak-anak Dusun Wungurejo.", status: "Belum Mulai", image_urls: [] },
+        { id: 12, type: "Proker Individu", owner_name: "Lyra Artha Amarila", title: "Pemasaran Digital Madu TBS", description_markdown: "Optimalisasi media promosi dan strategi pemasaran digital untuk Usaha Madu TBS lokal.", status: "Belum Mulai", image_urls: [] },
+        { id: 13, type: "Proker Individu", owner_name: "Sabrina Az Zahra", title: "Festival Bicara Ceria", description_markdown: "Mengadakan Lomba MC Cilik dan Storytelling Anak untuk meningkatkan kemampuan komunikasi dan kepercayaan diri.", status: "Belum Mulai", image_urls: [] }
     ];
 
     const prokerGridContainer = document.getElementById('proker-grid-container');
