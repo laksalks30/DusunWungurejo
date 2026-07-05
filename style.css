@@ -2089,13 +2089,13 @@ textarea:focus {
     display: none;
     min-height: calc(100vh - 80px);
     /* Standalone screen height clearing header */
-    padding-top: 120px !important;
+    padding-top: 150px !important;
     /* Ensure section is not cut off by header */
 }
 
 /* beranda (Hero) has custom layout padding, so we adjust its top padding */
 #beranda.page-section {
-    padding-top: 140px !important;
+    padding-top: 160px !important;
 }
 
 .page-section.active {
@@ -5076,15 +5076,17 @@ body.lang-switching [data-lang-ph] {
     /* Fix content being hidden behind fixed navbar on mobile */
     /* Navbar height on mobile â‰ˆ 54px (10px*2 padding + 34px logo) */
     .page-section {
-        padding-top: 100px !important;
+        padding-top: 130px !important;
     }
 
     #beranda.page-section {
-        padding-top: 100px !important;
+        padding-top: 130px !important;
     }
 
     .hero-section {
-        padding-top: 100px !important;
+        padding-top: 130px !important;
     }
 }
+
+
 
