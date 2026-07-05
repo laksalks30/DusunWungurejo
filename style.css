@@ -4503,3 +4503,250 @@ body.lang-switching [data-lang-ph] {
         right: 30px;
     }
 }
+
+/* ======================================================
+   PDF GENERATOR — Floating Button & Modal
+   ====================================================== */
+
+/* FAB Trigger Button */
+#pdf-fab {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #6C0820 0%, #a81032 100%);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    padding: 12px 20px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    font-family: inherit;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: 0 6px 20px rgba(108, 8, 32, 0.4);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+#pdf-fab i { font-size: 1.05rem; }
+#pdf-fab:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 10px 28px rgba(108, 8, 32, 0.55);
+}
+
+@media (max-width: 768px) {
+    #pdf-fab { bottom: 90px; left: 16px; padding: 11px 16px; font-size: 0.82rem; }
+    #pdf-fab span { display: none; }
+    #pdf-fab { border-radius: 50%; width: 48px; height: 48px; padding: 0; justify-content: center; }
+}
+
+/* Overlay Backdrop */
+.pdf-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.pdf-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Modal Card */
+.pdf-modal {
+    background: var(--color-white);
+    border-radius: 24px;
+    width: 100%;
+    max-width: 640px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.3);
+    position: relative;
+    transform: scale(0.92) translateY(20px);
+    transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.pdf-overlay.active .pdf-modal {
+    transform: scale(1) translateY(0);
+}
+
+/* Close Button */
+.pdf-modal-close {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(108, 8, 32, 0.08);
+    color: var(--color-primary);
+    font-size: 1.3rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+    font-family: inherit;
+}
+.pdf-modal-close:hover { background: rgba(108, 8, 32, 0.18); }
+
+/* Modal Header */
+.pdf-modal-header {
+    background: linear-gradient(135deg, #6C0820 0%, #a81032 100%);
+    border-radius: 24px 24px 0 0;
+    padding: 30px 36px 24px;
+    text-align: center;
+    color: #fff;
+}
+.pdf-modal-icon {
+    width: 60px;
+    height: 60px;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 14px;
+    font-size: 1.6rem;
+    backdrop-filter: blur(4px);
+}
+.pdf-modal-header h2 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 6px;
+    color: #fff;
+}
+.pdf-modal-header p {
+    font-size: 0.9rem;
+    opacity: 0.85;
+    color: rgba(255,255,255,0.9);
+}
+
+/* Modal Body */
+.pdf-modal-body {
+    padding: 28px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.pdf-form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+@media (max-width: 500px) { .pdf-form-row { grid-template-columns: 1fr; } }
+
+.pdf-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.pdf-form-group label {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--color-dark);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+.pdf-form-group input,
+.pdf-form-group select,
+.pdf-form-group textarea {
+    border: 1.5px solid rgba(108, 8, 32, 0.15);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 0.95rem;
+    font-family: inherit;
+    color: var(--color-dark);
+    background: var(--color-white);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    resize: vertical;
+}
+.pdf-form-group input:focus,
+.pdf-form-group select:focus,
+.pdf-form-group textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(108, 8, 32, 0.1);
+}
+
+.pdf-preview-note {
+    background: rgba(108, 8, 32, 0.05);
+    border-left: 3px solid var(--color-primary);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 0.83rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+}
+.pdf-preview-note i { color: var(--color-primary); margin-top: 2px; flex-shrink: 0; }
+
+/* Modal Footer */
+.pdf-modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 0 36px 28px;
+}
+.pdf-btn-cancel {
+    background: transparent;
+    border: 1.5px solid rgba(108, 8, 32, 0.2);
+    color: var(--color-text-muted);
+    padding: 11px 22px;
+    border-radius: 10px;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+.pdf-btn-cancel:hover { border-color: var(--color-primary); color: var(--color-primary); }
+.pdf-btn-generate {
+    background: linear-gradient(135deg, #6C0820 0%, #a81032 100%);
+    color: #fff;
+    border: none;
+    padding: 11px 24px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    font-family: inherit;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 6px 18px rgba(108, 8, 32, 0.3);
+    transition: all 0.2s;
+}
+.pdf-btn-generate:hover { box-shadow: 0 8px 24px rgba(108, 8, 32, 0.45); transform: translateY(-2px); }
+
+/* Dark Mode — PDF Modal */
+[data-theme="dark"] .pdf-modal { background: #1E1E2E; }
+[data-theme="dark"] .pdf-form-group label { color: #CDD6F4; }
+[data-theme="dark"] .pdf-form-group input,
+[data-theme="dark"] .pdf-form-group select,
+[data-theme="dark"] .pdf-form-group textarea {
+    background: #181825;
+    color: #CDD6F4;
+    border-color: rgba(255, 107, 157, 0.2);
+}
+[data-theme="dark"] .pdf-preview-note {
+    background: rgba(255, 107, 157, 0.06);
+    color: #A6ADC8;
+}
+[data-theme="dark"] .pdf-btn-cancel {
+    border-color: rgba(255,255,255,0.15);
+    color: #A6ADC8;
+}
+[data-theme="dark"] .pdf-btn-cancel:hover { border-color: #FF6B9D; color: #FF6B9D; }

@@ -2,6 +2,20 @@
 <html lang="id">
 
 <head>
+    <script>
+        window.onerror = function(message, source, lineno, colno, error) {
+            const errDiv = document.createElement('div');
+            errDiv.style.position = 'fixed';
+            errDiv.style.top = '0';
+            errDiv.style.left = '0';
+            errDiv.style.zIndex = '999999';
+            errDiv.style.background = 'red';
+            errDiv.style.color = 'white';
+            errDiv.style.padding = '20px';
+            errDiv.innerHTML = `<h3>JavaScript Error</h3><p>${message}</p><p>Source: ${source}:${lineno}:${colno}</p><pre>${error ? error.stack : ''}</pre>`;
+            document.body.appendChild(errDiv);
+        };
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KKN AA 84.095 UPN "Veteran" Yogyakarta - Dusun Wungurejo</title>
@@ -29,6 +43,8 @@
     <link rel="stylesheet" href="style.css?v=15">
     <!-- Chart.js for Demographics -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jsPDF for PDF Generator -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -869,18 +885,275 @@
 
         function sendOpt(question, answer) {
             var body = document.getElementById('chat-body');
-            // Add user message
             body.innerHTML += '<div class="chat-msg user-msg">' + question + '</div>';
-            // Scroll to bottom
             body.scrollTop = body.scrollHeight;
-
-            // Add bot typing effect delay
             setTimeout(function () {
                 body.innerHTML += '<div class="chat-msg bot-msg">' + answer + '</div>';
                 body.scrollTop = body.scrollHeight;
             }, 600);
         }
     </script>
-</body>
 
+    <!-- ============================================================ -->
+    <!-- FLOATING PDF BUTTON -->
+    <!-- ============================================================ -->
+    <button id="pdf-fab" title="Buat Surat Izin PDF" aria-label="Buat Surat PDF">
+        <i class="fa-solid fa-file-pdf"></i>
+        <span>Surat Izin</span>
+    </button>
+
+    <!-- ============================================================ -->
+    <!-- PDF GENERATOR MODAL -->
+    <!-- ============================================================ -->
+    <div id="pdf-modal-overlay" class="pdf-overlay" role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title">
+        <div class="pdf-modal">
+            <button class="pdf-modal-close" id="pdf-modal-close" aria-label="Tutup">&times;</button>
+
+            <div class="pdf-modal-header">
+                <div class="pdf-modal-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <h2 id="pdf-modal-title">Generator Surat Izin KKN</h2>
+                <p>Isi data di bawah ini. Surat akan otomatis dibuat dan terunduh.</p>
+            </div>
+
+            <div class="pdf-modal-body">
+                <!-- Jenis Surat -->
+                <div class="pdf-form-group">
+                    <label>Jenis Surat</label>
+                    <select id="pdf-jenis">
+                        <option value="izin_kegiatan">Surat Izin Kegiatan</option>
+                        <option value="izin_survey">Surat Izin Survey Lapangan</option>
+                        <option value="permohonan_data">Surat Permohonan Data Desa</option>
+                    </select>
+                </div>
+
+                <!-- 2 kolom -->
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>Nama Lengkap Pemohon</label>
+                        <input type="text" id="pdf-nama" placeholder="contoh: Budi Santoso">
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>NIK (16 digit)</label>
+                        <input type="text" id="pdf-nik" maxlength="16" placeholder="3404xxxxxxxx">
+                    </div>
+                </div>
+
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>Nomor HP / WhatsApp</label>
+                        <input type="text" id="pdf-hp" placeholder="08xx-xxxx-xxxx">
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>Tanggal Kegiatan</label>
+                        <input type="date" id="pdf-tanggal">
+                    </div>
+                </div>
+
+                <div class="pdf-form-group">
+                    <label>Alamat Lengkap</label>
+                    <input type="text" id="pdf-alamat" placeholder="Jl. / Dusun / RT / RW / Kelurahan / Kecamatan">
+                </div>
+
+                <div class="pdf-form-group">
+                    <label>Keperluan / Keterangan Kegiatan</label>
+                    <textarea id="pdf-keperluan" rows="3" placeholder="Contoh: Sosialisasi Program UMKM Digital kepada warga Dusun Wungurejo dalam rangka KKN AA 84.095..."></textarea>
+                </div>
+
+                <div class="pdf-preview-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    Surat akan ditujukan kepada <strong>Kepala Dusun Wungurejo</strong> dengan kop surat resmi KKN AA 84.095 UPN "Veteran" Yogyakarta.
+                </div>
+            </div>
+
+            <div class="pdf-modal-footer">
+                <button class="pdf-btn-cancel" id="pdf-btn-cancel">Batal</button>
+                <button class="pdf-btn-generate" id="pdf-btn-generate">
+                    <i class="fa-solid fa-download"></i> Generate &amp; Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF GENERATOR LOGIC -->
+    <script>
+    (function() {
+        var overlay    = document.getElementById('pdf-modal-overlay');
+        var fab        = document.getElementById('pdf-fab');
+        var closeBtn   = document.getElementById('pdf-modal-close');
+        var cancelBtn  = document.getElementById('pdf-btn-cancel');
+        var genBtn     = document.getElementById('pdf-btn-generate');
+
+        if (!overlay || !fab) return; // safety guard
+
+        function openModal()  { overlay.classList.add('active');    document.body.style.overflow = 'hidden'; }
+        function closeModal() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
+
+        fab.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        cancelBtn.addEventListener('click', closeModal);
+        overlay.addEventListener('click', function(e) { if (e.target === overlay) closeModal(); });
+
+        // Default tanggal = hari ini
+        var tglInput = document.getElementById('pdf-tanggal');
+        if (tglInput) tglInput.valueAsDate = new Date();
+
+        genBtn.addEventListener('click', function() {
+            var nama      = document.getElementById('pdf-nama').value.trim();
+            var nik       = document.getElementById('pdf-nik').value.trim();
+            var hp        = document.getElementById('pdf-hp').value.trim();
+            var alamat    = document.getElementById('pdf-alamat').value.trim();
+            var keperluan = document.getElementById('pdf-keperluan').value.trim();
+            var tanggalRaw = document.getElementById('pdf-tanggal').value;
+            var jenisVal  = document.getElementById('pdf-jenis').value;
+
+            if (!nama || !nik || !alamat || !keperluan) {
+                alert('Harap lengkapi semua kolom wajib: Nama, NIK, Alamat, dan Keperluan.');
+                return;
+            }
+            if (!/^\d{16}$/.test(nik)) {
+                alert('NIK harus tepat 16 digit angka.');
+                return;
+            }
+
+            var bulanArr = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+            var tgl = tanggalRaw ? new Date(tanggalRaw + 'T00:00:00') : new Date();
+            var tanggalStr = tgl.getDate() + ' ' + bulanArr[tgl.getMonth()] + ' ' + tgl.getFullYear();
+
+            var jenisMap = {
+                izin_kegiatan:   'IZIN KEGIATAN',
+                izin_survey:     'IZIN SURVEY LAPANGAN',
+                permohonan_data: 'PERMOHONAN DATA DESA'
+            };
+            var judulSurat = jenisMap[jenisVal] || 'IZIN KEGIATAN';
+            var nomorSurat = 'KKN.AA84095/' + String(tgl.getDate()).padStart(2,'0') + String(tgl.getMonth()+1).padStart(2,'0') + tgl.getFullYear() + '/001';
+
+            // Pastikan library jsPDF tersedia
+            if (!window.jspdf || !window.jspdf.jsPDF) {
+                alert('Library PDF belum siap. Pastikan koneksi internet aktif lalu coba lagi.');
+                return;
+            }
+
+            var jsPDF = window.jspdf.jsPDF;
+            var doc   = new jsPDF({ unit: 'mm', format: 'a4' });
+            var lm = 25, rm = 25, pw = 210 - lm - rm;
+
+            // ─── KOP SURAT ───────────────────────────────────────────
+            doc.setDrawColor(108, 8, 32);
+            doc.setLineWidth(1.5);
+            doc.line(lm, 10, 210 - rm, 10);
+
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(14);
+            doc.setTextColor(108, 8, 32);
+            doc.text('KKN KELOMPOK AA 84.095', 105, 19, { align: 'center' });
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(9.5);
+            doc.setTextColor(60, 60, 60);
+            doc.text('UPN "Veteran" Yogyakarta  |  Dusun Wungurejo, Kalurahan Pengkol, Kapanewon Nglipar, Gunungkidul', 105, 25, { align: 'center' });
+
+            doc.setDrawColor(108, 8, 32);
+            doc.setLineWidth(0.6);
+            doc.line(lm, 29, 210 - rm, 29);
+            doc.setLineWidth(0.2);
+            doc.line(lm, 31, 210 - rm, 31);
+
+            // ─── JUDUL ───────────────────────────────────────────────
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(13);
+            doc.setTextColor(20, 20, 20);
+            doc.text('SURAT ' + judulSurat, 105, 43, { align: 'center' });
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(10);
+            doc.setTextColor(80, 80, 80);
+            doc.text('Nomor: ' + nomorSurat, 105, 50, { align: 'center' });
+
+            // ─── PARAGRAF PEMBUKA ────────────────────────────────────
+            var y = 62;
+            doc.setFontSize(11);
+            doc.setTextColor(30, 30, 30);
+            var pembuka = 'Yang bertanda tangan di bawah ini, mahasiswa KKN AA 84.095 UPN "Veteran" Yogyakarta yang sedang melaksanakan pengabdian kepada masyarakat di Dusun Wungurejo, dengan hormat mengajukan permohonan kepada Bapak/Ibu Kepala Dusun Wungurejo.';
+            var pembLines = doc.splitTextToSize(pembuka, pw);
+            doc.text(pembLines, lm, y);
+            y += pembLines.length * 6 + 7;
+
+            // ─── DATA PEMOHON ────────────────────────────────────────
+            doc.setFont('helvetica', 'bold');
+            doc.text('Data Pemohon:', lm, y); y += 7;
+
+            var colLabel = lm + 4;
+            var colColon = lm + 48;
+            var colVal   = lm + 52;
+            var rows = [
+                ['Nama Lengkap', nama],
+                ['NIK',          nik],
+                ['No. HP / WA',  hp || '-'],
+                ['Alamat',       alamat],
+            ];
+            doc.setFont('helvetica', 'normal');
+            rows.forEach(function(r) {
+                doc.text(r[0], colLabel, y);
+                doc.text(':', colColon, y);
+                var vLines = doc.splitTextToSize(r[1], pw - (colVal - lm));
+                doc.text(vLines, colVal, y);
+                y += vLines.length * 6 + 1.5;
+            });
+
+            y += 4;
+            // ─── KEPERLUAN ───────────────────────────────────────────
+            doc.setFont('helvetica', 'bold');
+            doc.text('Keperluan / Keterangan:', lm, y); y += 7;
+            doc.setFont('helvetica', 'normal');
+            var kepLines = doc.splitTextToSize(keperluan, pw - 8);
+            doc.text(kepLines, colLabel, y);
+            y += kepLines.length * 6 + 4;
+            doc.text('Tanggal Kegiatan  :  ' + tanggalStr, colLabel, y);
+            y += 14;
+
+            // ─── PENUTUP ─────────────────────────────────────────────
+            var penutup = 'Demikian surat ini kami buat dengan sebenar-benarnya. Atas perhatian dan izin yang diberikan, kami ucapkan terima kasih.';
+            var petLines = doc.splitTextToSize(penutup, pw);
+            doc.text(petLines, lm, y);
+            y += petLines.length * 6 + 14;
+
+            // ─── TANDA TANGAN (2 kolom) ──────────────────────────────
+            var tglNow  = new Date();
+            var ttdDate = 'Nglipar, ' + tglNow.getDate() + ' ' + bulanArr[tglNow.getMonth()] + ' ' + tglNow.getFullYear();
+
+            doc.text('Hormat kami,', lm, y);
+            doc.text(ttdDate, 140, y);
+            y += 5;
+            doc.text('Pemohon,', lm, y);
+            doc.text('Ketua Kelompok KKN AA 84.095,', 140, y);
+            y += 28;
+            doc.setFont('helvetica', 'bold');
+            doc.text(nama, lm, y);
+            doc.text('Anas Rifai', 140, y);
+            doc.setFont('helvetica', 'normal');
+            y += 5;
+            doc.text('NIK: ' + nik, lm, y);
+            doc.text('NIM: ......................', 140, y);
+
+            // ─── FOOTER ──────────────────────────────────────────────
+            var ph = 297;
+            doc.setDrawColor(108, 8, 32);
+            doc.setLineWidth(0.4);
+            doc.line(lm, ph - 20, 210 - rm, ph - 20);
+            doc.setFontSize(8);
+            doc.setTextColor(140, 140, 140);
+            doc.text(
+                'Dokumen dibuat otomatis oleh website KKN AA 84.095 | ' + new Date().toLocaleString('id-ID'),
+                105, ph - 13, { align: 'center' }
+            );
+
+            // ─── SIMPAN ──────────────────────────────────────────────
+            var safeNama  = nama.replace(/[^a-zA-Z0-9]/g, '_');
+            var safeJudul = judulSurat.replace(/ /g, '_');
+            doc.save('Surat_' + safeJudul + '_' + safeNama + '.pdf');
+        });
+    })();
+    </script>
+
+</body>
 </html>
