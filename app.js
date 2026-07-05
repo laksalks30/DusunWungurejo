@@ -920,6 +920,7 @@ document.addEventListener('DOMContentLoaded', () => {
         lightboxImage.src = imgUrl;
         lightboxOverlay.classList.remove('hidden');
     };
+    window.openLightbox = openLightbox;
 
     window.closeLightbox = () => {
         if (lightboxOverlay) lightboxOverlay.classList.add('hidden');
