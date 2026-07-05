@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
 
     // --- 0. Preloader ---
     const preloader = document.getElementById('preloader');
@@ -248,7 +248,7 @@
             prokerCard.innerHTML = `
                 <div class="proker-icon-box ${iconBoxClass}"><i class="fa-solid ${icon}"></i></div>
                 <div class="proker-body">
-                    <span class="proker-tag">${proker.type} ${proker.owner_name ? `Ã¢â‚¬Â¢ ${proker.owner_name}` : ''}</span>
+                    <span class="proker-tag">${proker.type}${proker.owner_name ? ` &bull; ${proker.owner_name}` : ''}</span>
                     <h3 class="proker-title">${escapeHTML(proker.title)}</h3>
                     <div class="proker-desc">${descHtml}</div>
                     <div class="proker-footer">
