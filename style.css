@@ -5069,4 +5069,23 @@ body.lang-switching [data-lang-ph] {
     .mobile-nav-toggle {
         font-size: 1.3rem;
     }
+
+    /* Hide subtitle on mobile to keep navbar single row */
+    .logo-subtitle {
+        display: none;
+    }
+
+    /* Fix content being hidden behind fixed navbar on mobile */
+    /* Navbar height on mobile ≈ 54px (10px*2 padding + 34px logo) */
+    .page-section {
+        padding-top: 80px !important;
+    }
+
+    #beranda.page-section {
+        padding-top: 80px !important;
+    }
+
+    .hero-section {
+        padding-top: 80px;
+    }
 }
