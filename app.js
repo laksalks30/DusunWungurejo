@@ -591,7 +591,6 @@
                 if (detailMajor) detailMajor.textContent = member.major;
                 if (detailQuote) detailQuote.textContent = `"${member.quote}"`;
                 if (detailIg) detailIg.href = member.instagram;
-                if (detailLi) detailLi.href = member.linkedin;
 
                 if (member.photo) {
                     if (detailPhoto) {
