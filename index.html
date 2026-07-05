@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 
 <head>
@@ -916,6 +916,10 @@
                         <option value="izin_kegiatan">Surat Izin Kegiatan</option>
                         <option value="izin_survey">Surat Izin Survey Lapangan</option>
                         <option value="permohonan_data">Surat Permohonan Data Desa</option>
+                        <option value="akta_kelahiran">Surat Pengantar Akte Kelahiran</option>
+                        <option value="ktp_kk">Surat Pengantar Pembuatan KTP / KK</option>
+                        <option value="sktm">Surat Keterangan Tidak Mampu (SKTM)</option>
+                        <option value="domisili">Surat Keterangan Domisili</option>
                     </select>
                 </div>
 
@@ -1017,10 +1021,14 @@
             var jenisMap = {
                 izin_kegiatan:   'IZIN KEGIATAN',
                 izin_survey:     'IZIN SURVEY LAPANGAN',
-                permohonan_data: 'PERMOHONAN DATA DESA'
+                permohonan_data: 'PERMOHONAN DATA DESA',
+                akta_kelahiran:  'PENGANTAR AKTE KELAHIRAN',
+                ktp_kk:          'PENGANTAR PEMBUATAN KTP/KK',
+                sktm:            'KETERANGAN TIDAK MAMPU (SKTM)',
+                domisili:        'KETERANGAN DOMISILI'
             };
             var judulSurat = jenisMap[jenisVal] || 'IZIN KEGIATAN';
-            var nomorSurat = 'KKN.AA84095/' + String(tgl.getDate()).padStart(2,'0') + String(tgl.getMonth()+1).padStart(2,'0') + tgl.getFullYear() + '/001';
+            var nomorSurat = 'KKN.AB84095/' + String(tgl.getDate()).padStart(2,'0') + String(tgl.getMonth()+1).padStart(2,'0') + tgl.getFullYear() + '/001';
 
             // Pastikan library jsPDF tersedia
             if (!window.jspdf || !window.jspdf.jsPDF) {
