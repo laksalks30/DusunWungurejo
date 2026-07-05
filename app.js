@@ -1470,17 +1470,43 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Show content
             loader.style.display = 'none';
-            content.style.display = 'block';
+            content.style.display = 'flex'; // Changed to flex to match CSS
 
         } catch (err) {
-            console.error('Failed to fetch weather data:', err);
-            loader.innerHTML = `
-                <div style="text-align: center; color: var(--color-text-muted); padding: 10px;">
-                    <i class="fa-solid fa-wifi" style="font-size: 1.5rem; margin-bottom: 12px; opacity: 0.4;"></i><br>
-                    <span style="font-weight: 700; font-size: 0.95rem;">Mode Offline Aktif</span><br>
-                    <span style="font-size: 0.85rem;">Data cuaca *real-time* memerlukan koneksi internet.</span>
-                </div>
-            `;
+            console.warn('Failed to fetch real-time weather data. Using fallback static data.', err);
+            
+            // Fallback Static Data (Simulating a nice day in Wungurejo)
+            const temp = 26;
+            const humidity = 85;
+            const precip = 0;
+            const iconClass = 'fa-cloud-sun';
+            const iconColor = '#F39C12';
+            const desc = 'Cerah Berawan';
+            const advice = '(Mode Offline) Kondisi ideal untuk berbagai aktivitas pertanian, penanaman bibit baru, maupun penyiraman pestisida nabati.';
+
+            // Update DOM with Fallback Data
+            document.getElementById('weather-temp').textContent = `${temp}°C`;
+            document.getElementById('weather-desc').textContent = desc;
+            document.getElementById('weather-humidity').textContent = `${humidity}%`;
+            document.getElementById('weather-precip').textContent = `${precip} mm`;
+            
+            const iconBox = document.getElementById('weather-icon-box');
+            iconBox.innerHTML = `<i class="fa-solid ${iconClass}"></i>`;
+            iconBox.style.color = iconColor;
+            
+            document.getElementById('weather-advice').textContent = advice;
+
+            // Change Live badge to indicate Offline mode gracefully
+            const liveBadge = document.querySelector('.weather-status-live');
+            if (liveBadge) {
+                liveBadge.style.background = 'rgba(243, 156, 18, 0.1)';
+                liveBadge.style.color = '#F39C12';
+                liveBadge.innerHTML = '<i class="fa-solid fa-wifi-slash"></i> <span data-lang-key="weather_live">Data Statis</span>';
+            }
+
+            // Show content
+            loader.style.display = 'none';
+            content.style.display = 'flex';
         }
     };
 
@@ -1821,6 +1847,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     initFireflies();
 
+    // Initialize Weather Dashboard
+    initWeatherDashboard();
 
 
 
