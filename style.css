@@ -1995,18 +1995,34 @@ textarea:focus {
         top: 100%;
         left: 0;
         width: 100%;
-        background-color: rgba(255, 255, 255, 0.95);
+        background-color: var(--color-white); /* Use theme-aware variable instead of hardcoded white */
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         border-bottom: 1px solid rgba(0, 0, 0, 0.06);
         flex-direction: column;
-        padding: 24px;
-        gap: 16px;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        padding: 30px 24px;
+        gap: 20px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
         transform: translateY(-120%);
         opacity: 0;
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
         pointer-events: none;
+        z-index: 999;
+    }
+
+    [data-theme="dark"] .nav-menu {
+        background-color: rgba(30, 30, 46, 0.98) !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
+    }
+    
+    [data-theme="dark"] .nav-link {
+        color: #CDD6F4 !important;
+    }
+    
+    [data-theme="dark"] .nav-link.active,
+    [data-theme="dark"] .nav-link:hover {
+        color: #FF6B9D !important;
     }
 
     .nav-menu.show {
