@@ -200,9 +200,9 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Madu Klanceng Murni",
             badge: "Hasil Peternakan",
             price: "Rp 85.000 / Botol (100ml)",
-            owner: "Peternak: Usaha Madu TBS — Dusun Wungurejo",
-            desc: "Madu klanceng murni 100% tanpa campuran, dipanen langsung dari koloni lebah tanpa sengat (Trigona sp.) yang diternakkan di alam asri Dusun Wungurejo. Kaya akan antioksidan, vitamin, dan mineral alami. Berkhasiat untuk meningkatkan imun tubuh, menyembuhkan luka, dan menjaga kesehatan secara holistik.",
-            images: ["assets/images/umkm_madu.png"],
+            owner: "Peternak: Usaha Madu TBS (Bapak Sutadi) — Dusun Wungurejo",
+            desc: "Madu klanceng murni 100% tanpa campuran, dipanen langsung dari koloni lebah tanpa sengat (Trigona sp.) yang diternakkan di alam asri Dusun Wungurejo. Kaya akan antioksidan, vitamin, dan mineral alami. Berkhasiat untuk meningkatkan imun tubuh, menyembuhkan luka, dan menjaga kesehatan secara holistik. Dalam galeri terdapat momen kunjungan kami dan foto bersama Bapak Sutadi selaku pemilik Usaha Madu TBS.",
+            images: ["assets/images/umkm_madu.png", "assets/GaleriUMKM/Fotobersamapaksutadimadutbs.jpeg"],
             waLink: "https://wa.me/6281234567890?text=Halo%2C%20saya%20mau%20pesan%20Madu%20Klanceng%20asli%20Wungurejo.%20Apakah%20stoknya%20ready%3F",
             mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.4!2d110.605389!3d-7.874000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTInMjYuNCJTIDExMMKwMzYnMTkuNCJF!5e0!3m2!1sid!2sid!4v1000000000001!5m2!1sid!2sid"
         },
