@@ -1,4 +1,4 @@
-﻿/**
+/**
  * ============================================================
  *  MULTI-LANGUAGE DICTIONARY â€” KKN AB 84.095
  *  lang.js  |  Bahasa Indonesia (id) & English (en)
@@ -23,7 +23,7 @@ window.KKN_LANG = {
         hero_tag:       "Wungurejo, Gunungkidul (1 Juli - 31 Juli 2026)",
         hero_title:     "Datang Mengabdi,",
         hero_highlight: "Pulang Membawa Arti",
-        hero_desc:      "Website resmi Kuliah Kerja Nyata (KKN) Kelompok AA 84.095 Universitas Pembangunan Nasional \"Veteran\" Yogyakarta. Bersama masyarakat mewujudkan kemandirian, pendidikan, dan kesejahteraan desa.",
+        hero_desc:      "Website resmi Kuliah Kerja Nyata (KKN) Kelompok AB 84.095 Universitas Pembangunan Nasional \"Veteran\" Yogyakarta. Bersama masyarakat mewujudkan kemandirian, pendidikan, dan kesejahteraan desa.",
         hero_btn_proker:"Lihat Program Kerja",
         hero_btn_desa:  "Jelajahi Desa",
 
@@ -67,7 +67,7 @@ window.KKN_LANG = {
         // â”€â”€ PROKER SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         proker_tag:         "Rencana Aksi",
         proker_title:       "Program Kerja Pengabdian",
-        proker_subtitle:    "Inisiatif program kerja KKN Kelompok AA 84.095 yang terbagi berdasarkan kategori pelaksanaan.",
+        proker_subtitle:    "Inisiatif program kerja KKN Kelompok AB 84.095 yang terbagi berdasarkan kategori pelaksanaan.",
         filter_all:         "Semua",
         filter_bersama:     "Proker Bersama",
         filter_individu:    "Proker Individu",
@@ -108,7 +108,7 @@ window.KKN_LANG = {
         // â”€â”€ GALLERY SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         gallery_tag:        "Pesona Wungurejo",
         gallery_title:      "Galeri Pengabdian",
-        gallery_subtitle:   "Potret keindahan alam dan momen berharga selama pelaksanaan KKN Kelompok AA 84.095.",
+        gallery_subtitle:   "Potret keindahan alam dan momen berharga selama pelaksanaan KKN Kelompok AB 84.095.",
 
         // â”€â”€ TIM SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         tim_tag:            "Anggota Kelompok",
@@ -119,7 +119,7 @@ window.KKN_LANG = {
         // â”€â”€ GUESTBOOK SECTION â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         gb_tag:             "Pesan & Saran",
         gb_title:           "Buku Tamu Interaktif",
-        gb_subtitle:        "Silakan tinggalkan pesan, masukan, atau kesan bagi KKN Kelompok AA 84.095 selama di Dusun Wungurejo.",
+        gb_subtitle:        "Silakan tinggalkan pesan, masukan, atau kesan bagi KKN Kelompok AB 84.095 selama di Dusun Wungurejo.",
         gb_form_title:      "Kirim Pesan Baru",
         gb_label_name:      "Nama Lengkap",
         gb_ph_name:         "Contoh: Pak Budi",
@@ -169,7 +169,7 @@ window.KKN_LANG = {
 
         // â”€â”€ FOOTER â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
         footer_loc:         "Desa Dusun Wungurejo, Pengkol, Nglipar, Gunung Kidul",
-        footer_copy:        "Â© 2026 KKN Kelompok AA 84.095. All Rights Reserved. Made with",
+        footer_copy:        "Â© 2026 KKN Kelompok AB 84.095. All Rights Reserved. Made with",
         footer_for:         "for Wungurejo.",
     },
 
