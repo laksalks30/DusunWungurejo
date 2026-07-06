@@ -922,15 +922,13 @@
     <script src="app.js?v=44"></script>
     <!-- PWA Service Worker Registration -->
     <script>
+        // PWA Disabled Temporarily for Development
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker PWA berhasil diregistrasi dengan scope: ', registration.scope);
-                    })
-                    .catch(err => {
-                        console.error('Pendaftaran ServiceWorker gagal: ', err);
-                    });
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                    console.log('ServiceWorker unregistered successfully.');
+                }
             });
         }
     </script>
