@@ -561,18 +561,32 @@
         <!-- ① Scrollytelling: dedicated 400vh container so sticky works perfectly -->
         <div id="gallery-scrolly-trigger" class="gallery-scrolly-trigger">
             <div class="gallery-scrolly-sticky">
+                <!-- Particle canvas background -->
+                <canvas id="scrolly-particles" class="scrolly-particles-canvas"></canvas>
+
+                <!-- Progress bar -->
+                <div class="scrolly-progress-bar" id="scrolly-progress-bar"></div>
+
                 <div class="scrolly-content">
                     <div class="scrolly-text" id="scroll-text-1">
-                        <span class="scrolly-highlight">31 Hari</span> Pengabdian...
+                        <div class="scrolly-label">Durasi Pengabdian</div>
+                        <div class="scrolly-number"><span class="scrolly-highlight">31</span></div>
+                        <div class="scrolly-unit">Hari Penuh Dedikasi</div>
                     </div>
                     <div class="scrolly-text" id="scroll-text-2">
-                        <span class="scrolly-highlight">13</span> Program Kerja Terlaksana
+                        <div class="scrolly-label">Total Program Kerja</div>
+                        <div class="scrolly-number"><span class="scrolly-highlight">16</span></div>
+                        <div class="scrolly-unit">Program Kerja Terlaksana</div>
                     </div>
                     <div class="scrolly-text" id="scroll-text-3">
-                        <span class="scrolly-highlight">430+</span> Warga Dusun Terjangkau
+                        <div class="scrolly-label">Jangkauan Komunitas</div>
+                        <div class="scrolly-number"><span class="scrolly-highlight">430<span class="scrolly-plus">+</span></span></div>
+                        <div class="scrolly-unit">Warga Dusun Terdampak</div>
                     </div>
                     <div class="scrolly-text" id="scroll-text-4">
-                        Meninggalkan <span class="scrolly-highlight">Jejak Digital Abadi</span> di Wungurejo.
+                        <div class="scrolly-label">Warisan Digital</div>
+                        <div class="scrolly-number scrolly-number--text"><span class="scrolly-highlight">Jejak Abadi</span></div>
+                        <div class="scrolly-unit">Tertinggal di Wungurejo</div>
                     </div>
                 </div>
 
@@ -919,7 +933,7 @@
     <!-- Multi-Language Dictionary -->
     <script src="lang.js?v=5"></script>
     <!-- App Script -->
-    <script src="app.js?v=44"></script>
+    <script src="app.js?v=45"></script>
     <!-- PWA Service Worker Registration -->
     <script>
         // PWA Disabled Temporarily for Development

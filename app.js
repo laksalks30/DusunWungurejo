@@ -1514,6 +1514,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // --- 12. SCROLLYTELLING IMPACT REPORT ---
     const initScrollytelling = () => {
         const container = document.getElementById('gallery-scrolly-trigger');
+        const progressBar = document.getElementById('scrolly-progress-bar');
         const texts = [
             document.getElementById('scroll-text-1'),
             document.getElementById('scroll-text-2'),
@@ -1523,65 +1524,150 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (!container || texts.some(t => !t)) return;
 
+        // --- Particle Canvas ---
+        const canvas = document.getElementById('scrolly-particles');
+        if (canvas) {
+            const ctx2d = canvas.getContext('2d');
+            let particles = [];
+
+            const resizeCanvas = () => {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+            };
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            for (let i = 0; i < 80; i++) {
+                particles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    r: Math.random() * 1.5 + 0.3,
+                    dx: (Math.random() - 0.5) * 0.3,
+                    dy: -Math.random() * 0.4 - 0.1,
+                    alpha: Math.random() * 0.5 + 0.1,
+                    color: Math.random() > 0.5 ? '255,51,133' : '255,165,0'
+                });
+            }
+
+            const animateParticles = () => {
+                ctx2d.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.x += p.dx;
+                    p.y += p.dy;
+                    if (p.y < -5) { p.y = canvas.height + 5; p.x = Math.random() * canvas.width; }
+                    ctx2d.beginPath();
+                    ctx2d.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+                    ctx2d.fillStyle = `rgba(${p.color},${p.alpha})`;
+                    ctx2d.fill();
+                });
+                requestAnimationFrame(animateParticles);
+            };
+            animateParticles();
+        }
+
+        // --- Number counting animation ---
+        const countedSlides = new Set();
+        const countUp = (el, target, suffix = '') => {
+            const highlight = el.querySelector('.scrolly-highlight');
+            if (!highlight) return;
+            const isText = !isFinite(target);
+            if (isText) return;
+            let start = 0;
+            const duration = 900;
+            const startTime = performance.now();
+            const step = (now) => {
+                const elapsed = now - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const eased = 1 - Math.pow(1 - progress, 3);
+                const value = Math.round(start + eased * (target - start));
+                highlight.textContent = value + suffix;
+                if (progress < 1) requestAnimationFrame(step);
+            };
+            requestAnimationFrame(step);
+        };
+
+        const slideTargets = [31, 16, 430, null];
+        const slideSuffixes = ['', '', '+', ''];
+
         // Initialize all texts as hidden
         texts.forEach(t => {
             t.style.opacity = '0';
-            t.style.transform = 'translate(-50%, -50%) scale(0.9)';
+            t.style.transform = 'translate(-50%, calc(-50% + 60px))';
+            t.style.filter = 'blur(12px)';
+            t.style.transition = 'none';
         });
+
+        let lastActiveIndex = -1;
 
         const updateScrolly = () => {
             const rect = container.getBoundingClientRect();
             const endScroll = container.offsetHeight - window.innerHeight;
 
-            // Not yet in view — hide all
-            if (rect.top > 0) {
+            // Not in view yet
+            if (rect.top > window.innerHeight * 0.1) {
                 texts.forEach(t => {
                     t.style.opacity = '0';
-                    t.style.transform = 'translate(-50%, -50%) scale(0.9)';
+                    t.style.filter = 'blur(12px)';
+                    t.style.transform = 'translate(-50%, calc(-50% + 60px))';
                 });
+                if (progressBar) progressBar.style.width = '0%';
                 return;
             }
 
             const scrollProgress = Math.min(1, Math.max(0, Math.abs(rect.top) / endScroll));
             const totalTexts = texts.length;
             const segmentSize = 1 / totalTexts;
-
-            // Which segment is currently active?
             const activeIndex = Math.min(totalTexts - 1, Math.floor(scrollProgress / segmentSize));
 
+            // Update top progress bar
+            if (progressBar) progressBar.style.width = (scrollProgress * 100) + '%';
+
             texts.forEach((text, index) => {
+                const segStart = index * segmentSize;
+                const posInSeg = (scrollProgress - segStart) / segmentSize;
                 let opacity = 0;
-                let scale = 0.9;
+                let blur = 12;
+                let ty = 60; // px offset Y
 
                 if (index === activeIndex) {
-                    // Position within this segment (0 → 1)
-                    const segStart = index * segmentSize;
-                    const posInSeg = (scrollProgress - segStart) / segmentSize;
-
-                    // Fade IN first 20%, hold 60%, fade OUT last 20%
+                    // Fade IN: 0–20%, hold: 20–80%, fade OUT: 80–100%
                     if (posInSeg < 0.2) {
-                        opacity = posInSeg / 0.2;
-                    } else if (posInSeg > 0.8) {
-                        opacity = (1 - posInSeg) / 0.2;
+                        const p = posInSeg / 0.2;
+                        opacity = p;
+                        blur = 12 * (1 - p);
+                        ty = 60 * (1 - p);
+                    } else if (posInSeg > 0.8 && index < totalTexts - 1) {
+                        const p = (posInSeg - 0.8) / 0.2;
+                        opacity = 1 - p;
+                        blur = 12 * p;
+                        ty = -40 * p;
                     } else {
                         opacity = 1;
+                        blur = 0;
+                        ty = 0;
                     }
-                    scale = 0.95 + (0.05 * opacity);
+
+                    // Trigger count-up once per slide
+                    if (opacity > 0.5 && !countedSlides.has(index) && slideTargets[index] !== null) {
+                        countedSlides.add(index);
+                        countUp(text, slideTargets[index], slideSuffixes[index]);
+                    }
                 }
 
                 text.style.opacity = opacity;
-                text.style.transform = `translate(-50%, -50%) scale(${scale})`;
+                text.style.filter = `blur(${blur.toFixed(1)}px)`;
+                text.style.transform = `translate(-50%, calc(-50% + ${ty.toFixed(1)}px))`;
             });
 
             // Update progress dots
             const dots = document.querySelectorAll('.scrolly-dot');
-            dots.forEach((dot, i) => {
-                dot.classList.toggle('active', i === activeIndex);
-            });
+            dots.forEach((dot, i) => dot.classList.toggle('active', i === activeIndex));
+
+            lastActiveIndex = activeIndex;
         };
 
         window.addEventListener('scroll', updateScrolly, { passive: true });
-        updateScrolly(); // run once on load
+        updateScrolly();
     };
 
     // Load static data on startup
