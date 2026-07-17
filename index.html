@@ -1501,7 +1501,18 @@
                 return d.getDate() + ' ' + BULAN[d.getMonth()] + ' ' + d.getFullYear();
             }
 
-            function drawSurat(doc, ox, W, d) {
+            function drawSurat(doc, ox, W, d, logoImg) {
+                // ADD WATERMARK
+                if (logoImg) {
+                    doc.saveGraphicsState();
+                    doc.setGState(new doc.GState({opacity: 0.1}));
+                    var cx = ox + (W / 2);
+                    var cy = 105; // A4 height is 210
+                    var logoSize = 80; // Size of watermark
+                    doc.addImage(logoImg, 'PNG', cx - (logoSize/2), cy - (logoSize/2) - 10, logoSize, logoSize);
+                    doc.restoreGraphicsState();
+                }
+
                 var fs  = 6.8;
                 var lh  = 4.2;
                 var y   = 8;
@@ -1645,6 +1656,18 @@
                     return;
                 }
 
+                // Load Logo image for watermark
+                var logoImg = new Image();
+                logoImg.src = 'assets/logo/LogoKKNBaru.png';
+                logoImg.onload = function() {
+                    generateAndSavePDF(d, logoImg);
+                };
+                logoImg.onerror = function() {
+                    generateAndSavePDF(d, null);
+                };
+            });
+
+            function generateAndSavePDF(d, logoImg) {
                 var jsPDF = window.jspdf.jsPDF;
                 var doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
                 var pageW = 297;
@@ -1655,19 +1678,16 @@
                 doc.line(pageW / 2, 4, pageW / 2, 206);
                 doc.setLineDash([], 0);
 
-                drawSurat(doc, 4, copyW, d);
-                drawSurat(doc, pageW / 2 + 4, copyW, d);
+                drawSurat(doc, 4, copyW, d, logoImg);
+                drawSurat(doc, pageW / 2 + 4, copyW, d, logoImg);
 
-                var fn = 'SuratPengantar_' + (d.nama.replace(/\\s+/g, '_') || 'Pemohon') + '.pdf';
+                var fn = 'SuratPengantar_' + (d.nama.replace(/\s+/g, '_') || 'Pemohon') + '.pdf';
                 doc.save(fn);
                 closeModal();
-            });
+            }
         })();
     </script>
-
-
 </body>
-
 </html>
 
 
