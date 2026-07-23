@@ -193,8 +193,8 @@ document.addEventListener('DOMContentLoaded', () => {
             desc: "Mahakarya seni ukir kayu berkualitas tinggi yang dikerjakan secara handmade oleh pengrajin lokal Dusun Wungurejo. Bahan baku kayu pilihan diolah dengan teknik tradisional yang telah diwariskan turun-temurun. Cocok untuk kolektor senjata, pecinta olahraga menembak, dan sebagai cendera mata khas Gunungkidul.",
             images: ["assets/KatalogUMKM/RT03/Pengrajin_Popor_SenapanKayu/IMG_0998_final.JPG", "assets/KatalogUMKM/RT03/Pengrajin_Popor_SenapanKayu/IMG_0999_final.JPG"],
             waLink: "https://wa.me/6287785165871?text=Halo%20Pengrajin%20Popor%2C%20saya%20tertarik%20dengan%20karya%20popor%20kayu%20dari%20Wungurejo.%20Bisa%20tanya-tanya%3F",
-            // Google Maps embed src untuk lokasi pengrajin popor
-            mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.4!2d110.60471903789087!3d-7.874912049612724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTInMjkuNyJTIDExMMKwMzYnMTcuMCJF!5e0!3m2!1sid!2sid!4v1000000000000!5m2!1sid!2sid"
+            // Google Maps link untuk lokasi pengrajin popor
+            mapSrc: "https://maps.google.com/?q=-7.874835050321339,110.60475888124326"
         },
         2: {
             name: "Madu Klanceng Murni",
