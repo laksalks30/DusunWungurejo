@@ -1503,16 +1503,6 @@
             }
 
             function drawSurat(doc, ox, W, d, logoImg) {
-                // ADD LOGO WATERMARK
-                if (logoImg) {
-                    doc.saveGraphicsState();
-                    doc.setGState(new doc.GState({opacity: 0.08}));
-                    var cx = ox + (W / 2);
-                    var cy = 148; // center of A4 portrait height (297/2)
-                    var logoSize = 110; // Size of watermark
-                    doc.addImage(logoImg, 'PNG', cx - (logoSize/2), cy - (logoSize/2), logoSize, logoSize);
-                    doc.restoreGraphicsState();
-                }
 
                 // ADD TEXT WATERMARK (bottom center)
                 doc.saveGraphicsState();
