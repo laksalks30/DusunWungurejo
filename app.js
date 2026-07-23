@@ -1381,9 +1381,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- Lightbox Zoom Logic ---
-    const openLightbox = (imgUrl) => {
+    const openLightbox = (imgUrl, title, desc) => {
         if (!lightboxOverlay || !lightboxImage) return;
         lightboxImage.src = imgUrl;
+        const captionBox   = document.getElementById('lightbox-caption');
+        const captionTitle = document.getElementById('lightbox-caption-title');
+        const captionDesc  = document.getElementById('lightbox-caption-desc');
+        if (captionBox && (title || desc)) {
+            if (captionTitle) captionTitle.textContent = title || '';
+            if (captionDesc)  captionDesc.textContent  = desc  || '';
+            captionBox.style.display = 'block';
+        } else if (captionBox) {
+            captionBox.style.display = 'none';
+        }
         lightboxOverlay.classList.remove('hidden');
     };
     window.openLightbox = openLightbox;
@@ -1445,7 +1455,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 day: 'numeric', month: 'short', year: 'numeric'
             });
             const html = `
-                <div class="gallery-item" data-aos="zoom-in" onclick="openLightbox('${fullUrl}')">
+                <div class="gallery-item" data-aos="zoom-in" onclick="openLightbox('${fullUrl}', '${escapeHTML(item.title)}', '${escapeHTML(item.description || '')}')">  
                     <img src="${fullUrl}" alt="${escapeHTML(item.title)}" class="gallery-img" loading="lazy">
                     <div class="gallery-info">
                         <h4 class="gallery-title">${escapeHTML(item.title)}</h4>
