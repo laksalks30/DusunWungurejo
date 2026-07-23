@@ -194,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
             images: ["assets/KatalogUMKM/RT03/Pengrajin_Popor_SenapanKayu/IMG_0998_final.JPG", "assets/KatalogUMKM/RT03/Pengrajin_Popor_SenapanKayu/IMG_0999_final.JPG"],
             waLink: "https://wa.me/6287785165871?text=Halo%20Pengrajin%20Popor%2C%20saya%20tertarik%20dengan%20karya%20popor%20kayu%20dari%20Wungurejo.%20Bisa%20tanya-tanya%3F",
             // Google Maps link untuk lokasi pengrajin popor
-            mapSrc: "https://maps.google.com/?q=-7.874835050321339,110.60475888124326"
+            mapSrc: "https://maps.app.goo.gl/FLSsHeaEzeNrAhf66"
         },
         2: {
             name: "Madu Klanceng Murni",
