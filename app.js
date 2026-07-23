@@ -189,9 +189,9 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Kerajinan Popor Senapan Kayu",
             badge: "Kerajinan Khas",
             price: "Mulai dari Rp 250.000",
-            owner: "Pengrajin: Warga Dusun Wungurejo (Pengrajin Popor)",
+            owner: "Pengrajin: Warga Dusun Wungurejo (Hub: 087785165871)",
             desc: "Mahakarya seni ukir kayu berkualitas tinggi yang dikerjakan secara handmade oleh pengrajin lokal Dusun Wungurejo. Bahan baku kayu pilihan diolah dengan teknik tradisional yang telah diwariskan turun-temurun. Cocok untuk kolektor senjata, pecinta olahraga menembak, dan sebagai cendera mata khas Gunungkidul.",
-            images: ["assets/images/umkm_popor.png"],
+            images: ["assets/KatalogUMKM/RT03/Pengrajin_Popor_SenapanKayu/IMG_0998_final.JPG", "assets/KatalogUMKM/RT03/Pengrajin_Popor_SenapanKayu/IMG_0999_final.JPG"],
             waLink: "https://wa.me/6287785165871?text=Halo%20Pengrajin%20Popor%2C%20saya%20tertarik%20dengan%20karya%20popor%20kayu%20dari%20Wungurejo.%20Bisa%20tanya-tanya%3F",
             // Google Maps embed src untuk lokasi pengrajin popor
             mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.4!2d110.60471903789087!3d-7.874912049612724!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTInMjkuNyJTIDExMMKwMzYnMTcuMCJF!5e0!3m2!1sid!2sid!4v1000000000000!5m2!1sid!2sid"
@@ -199,10 +199,18 @@ document.addEventListener('DOMContentLoaded', () => {
         2: {
             name: "Madu Klanceng Murni",
             badge: "Hasil Peternakan",
-            price: "Rp 85.000 / Botol (100ml)",
+            price: "Harga Bervariasi",
             owner: "Peternak: Usaha Madu TBS (Bapak Sutadi) — Dusun Wungurejo",
             desc: "Madu klanceng murni 100% tanpa campuran, dipanen langsung dari koloni lebah tanpa sengat (Trigona sp.) yang diternakkan di alam asri Dusun Wungurejo. Kaya akan antioksidan, vitamin, dan mineral alami. Berkhasiat untuk meningkatkan imun tubuh, menyembuhkan luka, dan menjaga kesehatan secara holistik. Dalam galeri terdapat momen kunjungan kami dan foto bersama Bapak Sutadi selaku pemilik Usaha Madu TBS.",
-            images: ["assets/images/umkm_madu.png", "assets/GaleriUMKM/Fotobersamapaksutadimadutbs.jpeg"],
+            images: [
+                "assets/KatalogUMKM/RT06/Madu_TBS/IMG_0850_final.JPG",
+                "assets/KatalogUMKM/RT06/Madu_TBS/IMG_0851_final.JPG",
+                "assets/KatalogUMKM/RT06/Madu_TBS/IMG_0852_final.JPG",
+                "assets/KatalogUMKM/RT06/Madu_TBS/IMG_0853_final.JPG",
+                "assets/KatalogUMKM/RT06/Madu_TBS/IMG_0854_final.JPG",
+                "assets/KatalogUMKM/RT06/Madu_TBS/IMG_0855_final.JPG",
+                "assets/KatalogUMKM/RT06/Madu_TBS/IMG_0856_final.JPG"
+            ],
             waLink: "https://wa.me/6281804093906?text=Halo%20Madu%20Klanceng%20Murni%20%28TBS%29",
             mapSrc: "https://maps.app.goo.gl/vjDa8UGaf69wPBEi6?g_st=ic"
         },
@@ -210,10 +218,10 @@ document.addEventListener('DOMContentLoaded', () => {
             name: "Bibit & Konsumsi Ikan Air Tawar",
             badge: "Hasil Peternakan",
             price: "Harga Bervariasi (Hubungi Peternak)",
-            owner: "Peternak: Bapak Sugino Wiryo — Dusun Wungurejo",
+            owner: "Peternak: Bapak Sugino Wiryo (Hub: 082226799923) — Dusun Wungurejo",
             desc: "Menyediakan bibit ikan berkualitas (Lele, Nila, Mas) dan ikan siap konsumsi hasil budidaya intensif oleh Bapak Sugino Wiryo. Kolam ikan dikelola secara higienis dengan pakan alami. Cocok untuk pembelian retail maupun partai besar untuk kebutuhan hajatan atau warung makan.",
             images: ["assets/images/umkm_ikan.png"],
-            waLink: "https://wa.me/6281234567890?text=Halo%20Bapak%20Sugino%2C%20saya%20tertarik%20dengan%20hasil%20perikanannya.%20Bisa%20tanya%20stok%20yang%20ready%3F",
+            waLink: "https://wa.me/6282226799923?text=Halo%20Bapak%20Sugino%2C%20saya%20tertarik%20dengan%20hasil%20perikanannya.%20Bisa%20tanya%20stok%20yang%20ready%3F",
             mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d494.4!2d110.60831684355774!3d-7.879900709814317!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zN8KwNTInNDcuNiJTIDExMMKwMzYnMzAuMCJF!5e0!3m2!1sid!2sid!4v1000000000002!5m2!1sid!2sid"
         },
         4: {

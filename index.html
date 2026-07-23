@@ -28,23 +28,20 @@
     <meta name="theme-color" content="#FF3385">
     <link rel="apple-touch-icon" href="assets/logo/LogoKKNBaru.png">
     <!-- Google Fonts: Plus Jakarta Sans -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+    <link href="assets/vendor/googlefonts/plus-jakarta-sans.css"
         rel="stylesheet">
     <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
     <!-- Leaflet CSS for WebGIS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
     <!-- AOS Animation CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
     <!-- Stylesheet -->
     <link rel="stylesheet" href="style.css?v=44">
     <!-- Chart.js for Demographics -->
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="assets/vendor/chartjs/chart.min.js"></script>
     <!-- jsPDF for PDF Generator -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="assets/vendor/jspdf/jspdf.umd.min.js"></script>
 </head>
 
 <body>
@@ -407,7 +404,7 @@
                 <!-- UMKM Item 1 -->
                 <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="100" data-umkm-id="1">
                     <div class="umkm-img-wrap">
-                        <img src="assets/images/umkm_popor.png" alt="Kerajinan Popor Senapan Kayu">
+                        <img src="assets/KatalogUMKM/RT03/Pengrajin_Popor_SenapanKayu/IMG_0998_final.JPG" alt="Kerajinan Popor Senapan Kayu">
                         <div class="umkm-badge">Kerajinan Khas</div>
                         <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
                     </div>
@@ -422,14 +419,14 @@
                 <!-- UMKM Item 2 -->
                 <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="200" data-umkm-id="2">
                     <div class="umkm-img-wrap">
-                        <img src="assets/images/umkm_madu.png" alt="Madu Klanceng Asli">
+                        <img src="assets/KatalogUMKM/RT06/Madu_TBS/IMG_0850_final.JPG" alt="Madu Klanceng Asli">
                         <div class="umkm-badge">Hasil Peternakan</div>
                         <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
                     </div>
                     <div class="umkm-content">
                         <h3>Madu Klanceng Murni</h3>
                         <p>Madu murni kaya antioksidan langsung dari peternakan lebah tanpa sengat.</p>
-                        <div class="umkm-price">Rp 85.000 / Botol</div>
+                        <div class="umkm-price">Harga Bervariasi</div>
                         <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
                     </div>
                 </div>
@@ -1191,13 +1188,11 @@
     </div>
 
     <!-- Leaflet JS for WebGIS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
-
-    <!-- Marked.js for Markdown parsing (Logbook) -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="assets/vendor/leaflet/leaflet.js"></script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="assets/vendor/marked/marked.min.js"></script>
     <!-- AOS Animation JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
     <script>
         AOS.init({
             duration: 800,
@@ -1206,8 +1201,8 @@
         });
     </script>
 
-    <!-- Vanilla Tilt (3D Hover Effect) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <!-- Vanilla-Tilt JS for 3D card effects -->
+    <script src="assets/vendor/vanilla-tilt/vanilla-tilt.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             VanillaTilt.init(document.querySelectorAll(".vm-card, .visual-card"), {
