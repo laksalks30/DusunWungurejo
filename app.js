@@ -1327,7 +1327,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Click to Zoom
                     slide.querySelector('img').addEventListener('click', () => {
-                        openLightbox(fullUrl);
+                        openLightbox(fullUrl, item.title, null, activeImages, idx);
                     });
 
                     carouselTrack.appendChild(slide);
@@ -1438,10 +1438,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
+    let currentLightboxImages = [];
+    let currentLightboxIndex = 0;
+
     // --- Lightbox Zoom Logic ---
-    const openLightbox = (imgUrl, title, desc) => {
+    const openLightbox = (imgUrl, title, desc, imagesArray = null, index = 0) => {
         if (!lightboxOverlay || !lightboxImage) return;
-        lightboxImage.src = imgUrl;
+        
+        currentLightboxImages = imagesArray && imagesArray.length > 0 ? imagesArray : [imgUrl];
+        currentLightboxIndex = index;
+
+        updateLightboxView(title, desc);
+        lightboxOverlay.classList.remove('hidden');
+    };
+
+    const updateLightboxView = (title, desc) => {
+        lightboxImage.src = currentLightboxImages[currentLightboxIndex];
+        
         const captionBox   = document.getElementById('lightbox-caption');
         const captionTitle = document.getElementById('lightbox-caption-title');
         const captionDesc  = document.getElementById('lightbox-caption-desc');
@@ -1452,8 +1465,36 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (captionBox) {
             captionBox.style.display = 'none';
         }
-        lightboxOverlay.classList.remove('hidden');
+
+        const prevBtn = document.getElementById('lightbox-prev');
+        const nextBtn = document.getElementById('lightbox-next');
+        if (prevBtn && nextBtn) {
+            if (currentLightboxImages.length > 1) {
+                prevBtn.style.display = 'flex';
+                nextBtn.style.display = 'flex';
+            } else {
+                prevBtn.style.display = 'none';
+                nextBtn.style.display = 'none';
+            }
+        }
     };
+
+    window.lightboxPrev = (e) => {
+        if (e) e.stopPropagation();
+        if (currentLightboxImages.length <= 1) return;
+        currentLightboxIndex--;
+        if (currentLightboxIndex < 0) currentLightboxIndex = currentLightboxImages.length - 1;
+        updateLightboxView();
+    };
+
+    window.lightboxNext = (e) => {
+        if (e) e.stopPropagation();
+        if (currentLightboxImages.length <= 1) return;
+        currentLightboxIndex++;
+        if (currentLightboxIndex >= currentLightboxImages.length) currentLightboxIndex = 0;
+        updateLightboxView();
+    };
+
     window.openLightbox = openLightbox;
 
     window.closeLightbox = () => {

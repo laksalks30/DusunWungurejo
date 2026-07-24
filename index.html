@@ -1184,8 +1184,12 @@
     <div id="lightbox-overlay" class="lightbox-overlay hidden" onclick="closeLightbox()">
         <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close Zoom"><i
                 class="fa-solid fa-xmark"></i></button>
+                
+        <button id="lightbox-prev" class="lightbox-nav-btn" onclick="lightboxPrev(event)" style="display:none; position:absolute; top:50%; left:20px; transform:translateY(-50%); background:rgba(0,0,0,0.5); border:none; color:white; width:44px; height:44px; border-radius:50%; font-size:1.2rem; cursor:pointer; z-index:1001; transition:background 0.3s; align-items:center; justify-content:center;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="lightbox-next" class="lightbox-nav-btn" onclick="lightboxNext(event)" style="display:none; position:absolute; top:50%; right:20px; transform:translateY(-50%); background:rgba(0,0,0,0.5); border:none; color:white; width:44px; height:44px; border-radius:50%; font-size:1.2rem; cursor:pointer; z-index:1001; transition:background 0.3s; align-items:center; justify-content:center;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'"><i class="fa-solid fa-chevron-right"></i></button>
+
         <div class="lightbox-content" onclick="event.stopPropagation()">
-            <img id="lightbox-image" src="" alt="Zoomed Image">
+            <img id="lightbox-image" src="" alt="Zoomed Image" style="user-select: none;">
             <div id="lightbox-caption" class="lightbox-caption" style="display:none;">
                 <h4 id="lightbox-caption-title"></h4>
                 <p id="lightbox-caption-desc"></p>
