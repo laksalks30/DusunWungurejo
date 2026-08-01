@@ -1,0 +1,1857 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <script>
+        window.onerror = function (message, source, lineno, colno, error) {
+            const errDiv = document.createElement('div');
+            errDiv.style.position = 'fixed';
+            errDiv.style.top = '0';
+            errDiv.style.left = '0';
+            errDiv.style.zIndex = '999999';
+            errDiv.style.background = 'red';
+            errDiv.style.color = 'white';
+            errDiv.style.padding = '20px';
+            errDiv.innerHTML = `<h3>JavaScript Error</h3><p>${message}</p><p>Source: ${source}:${lineno}:${colno}</p><pre>${error ? error.stack : ''}</pre>`;
+            document.body.appendChild(errDiv);
+        };
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KKN AB 84.095 UPN "Veteran" Yogyakarta - Dusun Wungurejo</title>
+    <!-- Favicon -->
+    <link rel="icon" href="assets/logo/LogoKKNBaru.png" type="image/png">
+    <meta name="description" content="Official website of KKN AB 84.095 UPN 'Veteran' Yogyakarta in Desa Dusun Wungurejo, Pengkol, Nglipar, Gunung Kidul. Explore our community development programs, daily logbook, and leave a message in our guestbook.">
+    <meta name="keywords" content="KKN, UPN Veteran Yogyakarta, Dusun Wungurejo, Pengkol, Nglipar, Gunung Kidul, Program Kerja KKN">
+    <meta name="author" content="KKN AB 84.095">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://laksalks30.github.io/DusunWungurejo/">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://laksalks30.github.io/DusunWungurejo/">
+    <meta property="og:title" content="KKN AB 84.095 UPN Veteran Yogyakarta - Dusun Wungurejo">
+    <meta property="og:description" content="Official website of KKN AB 84.095 UPN 'Veteran' Yogyakarta in Desa Dusun Wungurejo.">
+    <meta property="og:image" content="https://laksalks30.github.io/DusunWungurejo/assets/logo/LogoKKNBaru.png">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://laksalks30.github.io/DusunWungurejo/">
+    <meta property="twitter:title" content="KKN AB 84.095 UPN Veteran Yogyakarta - Dusun Wungurejo">
+    <meta property="twitter:description" content="Official website of KKN AB 84.095 UPN 'Veteran' Yogyakarta in Desa Dusun Wungurejo.">
+    <meta property="twitter:image" content="https://laksalks30.github.io/DusunWungurejo/assets/logo/LogoKKNBaru.png">
+    <!-- PWA Manifest and Theme Color -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF3385">
+    <link rel="apple-touch-icon" href="assets/logo/LogoKKNBaru.png">
+    <!-- Google Fonts: Plus Jakarta Sans -->
+    <link href="assets/vendor/googlefonts/plus-jakarta-sans.css"
+        rel="stylesheet">
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="assets/vendor/fontawesome/css/all.min.css">
+    <!-- Leaflet CSS for WebGIS -->
+    <link rel="stylesheet" href="assets/vendor/leaflet/leaflet.css" />
+    <!-- AOS Animation CSS -->
+    <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css?v=44">
+    <!-- Chart.js for Demographics -->
+    <script src="assets/vendor/chartjs/chart.min.js"></script>
+    <!-- jsPDF for PDF Generator -->
+    <script src="assets/vendor/jspdf/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+    <!-- Kunang-Kunang Global Canvas Background -->
+    <canvas id="firefly-canvas"
+        style="position: fixed; width: 100%; height: 100%; top: 0; left: 0; z-index: 9998; pointer-events: none;"></canvas>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="nav-container">
+            <a href="#" class="logo-area">
+                <img src="assets/logo/LogoKKNBaru.png" alt="Logo KKN AB 84.095" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-title">KKN AB 84.095</span>
+                    <span class="logo-subtitle">UPN "Veteran" Yogyakarta</span>
+                </div>
+            </a>
+            <nav class="nav-menu">
+                <a href="#beranda" class="nav-link active" data-lang-key="nav_home">Beranda</a>
+                <a href="#profil" class="nav-link" data-lang-key="nav_profile">Profil Desa</a>
+                <a href="#umkm" class="nav-link" data-lang-key="nav_umkm">E-Katalog UMKM</a>
+                <a href="#proker" class="nav-link" data-lang-key="nav_proker">Program Kerja</a>
+                <a href="#logbook" class="nav-link" data-lang-key="nav_logbook">Logbook</a>
+                <a href="#blog" class="nav-link" data-lang-key="nav_blog">Artikel</a>
+                <a href="#galeri" class="nav-link" data-lang-key="nav_gallery">Galeri</a>
+                <a href="#tim" class="nav-link" data-lang-key="nav_team">Tim Kami</a>
+                <a href="#guestbook" class="nav-link nav-btn" data-lang-key="nav_guestbook">Buku Tamu</a>
+                <!-- PDF Generator Button -->
+                <button id="pdf-nav-btn" class="pdf-nav-btn" aria-label="Buat Surat Izin PDF"
+                    title="Buat Surat Izin PDF"
+                    style="background: linear-gradient(135deg, #6C0820, #a81032); color:#fff; border:none; border-radius: 50px; width: auto; padding: 0 14px; font-size: 0.8rem; font-weight: 700; gap: 6px; display: inline-flex; align-items: center;">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span class="pdf-nav-label">Surat PDF</span>
+                </button>
+            </nav>
+            <div class="header-controls">
+                <!-- Language Toggle Button -->
+                <button id="lang-toggle" class="lang-toggle-btn" aria-label="Toggle Language">
+                    <span class="lang-id">ID</span>
+                    <span class="lang-sep">|</span>
+                    <span class="lang-en">EN</span>
+                </button>
+
+                <!-- Dark Mode Toggle Button -->
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+
+                <button class="mobile-nav-toggle" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="hero-section page-section">
+        <div class="hero-overlay" style="z-index: 2;"></div>
+        <div class="hero-container" style="z-index: 3;">
+            <div class="hero-content" data-aos="fade-up">
+                <span class="hero-tag" data-lang-key="hero_tag">Wungurejo, Gunungkidul (1 Juli - 31 Juli 2026)</span>
+                <h1 class="hero-title"><span data-lang-key="hero_title">Datang Mengabdi,</span><br><span
+                        class="highlight-text" data-lang-key="hero_highlight">Pulang Membawa Arti</span>
+                </h1>
+                <p class="hero-description" data-lang-key="hero_desc">Website resmi Kuliah Kerja Nyata (KKN) Kelompok AB
+                    84.095 Universitas
+                    Pembangunan Nasional "Veteran" Yogyakarta. Bersama masyarakat mewujudkan kemandirian, pendidikan,
+                    dan kesejahteraan desa.</p>
+                <div class="hero-actions">
+                    <a href="#proker" class="btn btn-primary"><span data-lang-key="hero_btn_proker">Lihat Program
+                            Kerja</span> <i class="fa-solid fa-arrow-right"></i></a>
+                    <a href="#profil" class="btn btn-secondary" data-lang-key="hero_btn_desa">Jelajahi Desa</a>
+                </div>
+            </div>
+
+            <div class="hero-stats-card">
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="stat-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-number">16</span>
+                        <span class="stat-label" data-lang-key="stat_proker_label">Program Kerja</span>
+                    </div>
+                </div>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="200">
+                    <div class="stat-icon"><i class="fa-solid fa-people-group"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-number">10</span>
+                        <span class="stat-label" data-lang-key="stat_mhs_label">Mahasiswa KKN</span>
+                    </div>
+                </div>
+                <div class="stat-item" data-aos="zoom-in" data-aos-delay="300">
+                    <div class="stat-icon"><i class="fa-solid fa-calendar-day"></i></div>
+                    <div class="stat-info">
+                        <span class="stat-number">31 Hari</span>
+                        <span class="stat-label" data-lang-key="stat_hari_label">Mengabdi (1 Juli - 31 Juli)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Core Pillars Section (Fokus Kegiatan) -->
+        <div class="beranda-info-container">
+            <h2 class="beranda-info-title" data-lang-key="pillars_title" data-aos="fade-up">Fokus Utama Pengabdian Kami
+            </h2>
+            <div class="pillars-grid">
+                <!-- Pilar 1 -->
+                <div class="pillar-wrapper" data-aos="fade-up" data-aos-delay="100">
+                    <div class="pillar-card">
+                        <div class="pillar-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <h4 data-lang-key="p1_title">Pendidikan & Literasi</h4>
+                        <p data-lang-key="p1_desc">Membangun masa depan generasi muda Wungurejo melalui bimbingan
+                            belajar
+                            kreatif, literasi digital
+                            sejak dini, dan penyediaan pojok baca.</p>
+                    </div>
+                </div>
+                <!-- Pilar 2 -->
+                <div class="pillar-wrapper" data-aos="fade-up" data-aos-delay="200">
+                    <div class="pillar-card">
+                        <div class="pillar-icon"><i class="fa-solid fa-chart-line"></i></div>
+                        <h4 data-lang-key="p2_title">UMKM & Ekonomi Lokal</h4>
+                        <p data-lang-key="p2_desc">Mendorong kemandirian ekonomi desa dengan melakukan digitalisasi
+                            pemasaran, rebranding kemasan,
+                            dan sosialisasi manajemen keuangan.</p>
+                    </div>
+                </div>
+                <!-- Pilar 3 -->
+                <div class="pillar-wrapper" data-aos="fade-up" data-aos-delay="300">
+                    <div class="pillar-card">
+                        <div class="pillar-icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                        <h4 data-lang-key="p3_title">Kesehatan & Sanitasi</h4>
+                        <p data-lang-key="p3_desc">Meningkatkan kesadaran pola hidup bersih dan sehat (PHBS) warga desa
+                            serta melakukan sosialisasi
+                            intensif pencegahan stunting.</p>
+                    </div>
+                </div>
+                <!-- Pilar 4 -->
+                <div class="pillar-wrapper" data-aos="fade-up" data-aos-delay="400">
+                    <div class="pillar-card">
+                        <div class="pillar-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <h4 data-lang-key="p4_title">Adaptasi & Digitalisasi IT</h4>
+                        <p data-lang-key="p4_desc">Mengimplementasikan solusi digital untuk administrasi desa, pemetaan
+                            potensi wilayah, dan
+                            optimalisasi publikasi online desa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile & Village Section -->
+    <section id="profil" class="profile-section section-padding page-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-lang-key="profil_tag">Profil Pengabdian</span>
+                <h2 class="section-title" data-lang-key="profil_title">Kenal Lebih Dekat dengan Wungurejo</h2>
+                <p class="section-subtitle" data-lang-key="profil_subtitle">Kalurahan Pengkol, Kapanewon Nglipar,
+                    Kabupaten Gunungkidul, D.I. Yogyakarta</p>
+            </div>
+
+            <div class="profile-grid">
+                <div class="profile-text-content" data-aos="fade-right">
+                    <h3 data-lang-key="profil_potensi_h">Potensi & Karakteristik Dusun</h3>
+                    <p data-lang-key="profil_potensi_p">Dusun Wungurejo memiliki kekayaan filosofis dari kata "Wungu"
+                        (bunga yang tumbuh subur di tepi sungai) dan "Rejo" (makmur). Sebagai bagian dari rintisan Desa
+                        Wisata Wandari Mukti, dusun ini menyimpan potensi luar biasa di bidang kesenian tradisional
+                        (seperti Reog dan Gejog Lesung), peternakan madu klanceng, serta bentang alam perbukitan yang
+                        asri. KKN 84.095 hadir untuk berkolaborasi mengoptimalkan potensi tersebut menuju kemandirian
+                        ekonomi dan pelestarian budaya.</p>
+
+                    <div class="vision-mission">
+                        <div class="vm-card">
+                            <div class="vm-icon"><i class="fa-solid fa-bullseye"></i></div>
+                            <div class="vm-info">
+                                <h4 data-lang-key="visi_title">Visi Kami</h4>
+                                <p data-lang-key="visi_desc">Menjadi jembatan inovasi ilmiah akademis dengan kearifan
+                                    lokal guna meningkatkan daya
+                                    saing masyarakat Dusun Wungurejo.</p>
+                            </div>
+                        </div>
+                        <div class="vm-card">
+                            <div class="vm-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                            <div class="vm-info">
+                                <h4 data-lang-key="misi_title">Misi Pengabdian</h4>
+                                <p data-lang-key="misi_desc">Pemberdayaan UMKM lokal, edukasi berkelanjutan anak usia
+                                    sekolah, serta implementasi
+                                    adaptasi digital ramah masyarakat.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-visual" data-aos="fade-left">
+                    <div class="visual-card">
+                        <img src="assets/images/Gunung kidul.jpg" alt="Pemandangan Gunung Kidul" class="visual-img">
+                        <div class="visual-badge">
+                            <i class="fa-solid fa-map-location-dot"></i> Nglipar, Gunungkidul
+                        </div>
+                        <a href="https://instagram.com/sunraku_zx" target="_blank" class="visual-credit">
+                            <i class="fa-brands fa-instagram"></i> credit to : sunraku_zx
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data Demografi Section -->
+        <div class="demographics-container" style="margin-top: 60px;">
+            <h3 class="demo-header" data-aos="fade-up">
+                <i class="fa-solid fa-chart-pie" style="color: var(--color-primary); margin-right: 10px;"></i> <span
+                    data-lang-key="demo_title">Data Demografi Dusun Wungurejo</span>
+            </h3>
+            <div class="demo-grid">
+                <!-- Stat 1: Total Jiwa -->
+                <div class="demo-box" data-aos="zoom-in" data-aos-delay="100">
+                    <i class="fa-solid fa-users demo-icon" style="color: var(--color-primary);"></i>
+                    <h4 class="counter-up demo-val" data-target="437">0</h4>
+                    <p class="demo-label" data-lang-key="demo_penduduk">Total Penduduk</p>
+                </div>
+                <!-- Stat 2: KK -->
+                <div class="demo-box" data-aos="zoom-in" data-aos-delay="200">
+                    <i class="fa-solid fa-house-chimney-user demo-icon" style="color: var(--color-secondary);"></i>
+                    <h4 class="counter-up demo-val" data-target="135">0</h4>
+                    <p class="demo-label" data-lang-key="demo_kk">Kepala Keluarga</p>
+                </div>
+                <!-- Stat 3: RT -->
+                <div class="demo-box" data-aos="zoom-in" data-aos-delay="300">
+                    <i class="fa-solid fa-map demo-icon" style="color: #FFA500;"></i>
+                    <h4 class="counter-up demo-val" data-target="6">0</h4>
+                    <p class="demo-label" data-lang-key="demo_rt">Rukun Tetangga (RT)</p>
+                </div>
+                <!-- Stat 4: Gender -->
+                <div class="demo-box" data-aos="zoom-in" data-aos-delay="400">
+                    <div class="demo-chart-wrapper">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                    <div class="demo-gender-stats">
+                        <div>
+                            <span class="counter-up demo-val-sm" data-target="230">0</span><br>
+                            <span class="demo-label-sm" data-lang-key="demo_lakilaki">Laki-laki</span>
+                        </div>
+                        <div class="demo-divider"></div>
+                        <div>
+                            <span class="counter-up demo-val-sm" data-target="207">0</span><br>
+                            <span class="demo-label-sm" data-lang-key="demo_perempuan">Perempuan</span>
+                        </div>
+                    </div>
+                    <p class="demo-label" data-lang-key="demo_gender">Rasio Gender</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Smart Agriculture Weather Dashboard -->
+        <div class="weather-dashboard-container" data-aos="fade-up" style="margin-top: 40px;">
+            <div class="weather-card">
+                <div class="weather-header">
+                    <div class="weather-title">
+                        <i class="fa-solid fa-cloud-sun"></i>
+                        <span data-lang-key="weather_title">Pantauan Iklim & Pertanian Wungurejo</span>
+                    </div>
+                    <div class="weather-status-live">
+                        <span class="live-dot"></span> <span data-lang-key="weather_live">Live Update</span>
+                    </div>
+                </div>
+                
+                <!-- Loading State -->
+                <div id="weather-loader" class="weather-loader">
+                    <div class="loader-spinner"></div>
+                    <span style="font-size: 0.85rem; margin-top: 10px; color: var(--color-text-muted);">Menghubungkan ke satelit cuaca...</span>
+                </div>
+
+                <!-- Data State (Hidden by default) -->
+                <div id="weather-content" class="weather-content" style="display: none;">
+                    <div class="weather-main">
+                        <div class="weather-icon-box" id="weather-icon-box">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                        <div class="weather-temp-wrap">
+                            <div class="weather-temp" id="weather-temp">--°C</div>
+                            <div class="weather-desc" id="weather-desc">Menganalisis...</div>
+                        </div>
+                        <div class="weather-details">
+                            <div class="weather-detail-item">
+                                <i class="fa-solid fa-droplet"></i>
+                                <div>
+                                    <div class="wd-label">Kelembapan</div>
+                                    <div class="wd-val" id="weather-humidity">--%</div>
+                                </div>
+                            </div>
+                            <div class="weather-detail-item">
+                                <i class="fa-solid fa-cloud-showers-water"></i>
+                                <div>
+                                    <div class="wd-label">Presipitasi</div>
+                                    <div class="wd-val" id="weather-precip">-- mm</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="weather-advice-box">
+                        <div class="advice-header">
+                            <i class="fa-solid fa-lightbulb" style="color: #FFC107;"></i>
+                            <strong>Smart Advice KKN:</strong>
+                        </div>
+                        <p class="advice-text" id="weather-advice">Tunggu sebentar, sedang merumuskan saran pertanian...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-map-container" data-aos="fade-up"
+            style="margin-top: 60px; background-color: var(--color-white); padding: 30px; border-radius: 24px; box-shadow: 0 20px 40px var(--color-shadow); border: 1.5px solid rgba(108, 8, 32, 0.08);">
+            <h3
+                style="text-align: center; margin-bottom: 24px; font-size: 1.5rem; color: var(--color-dark); font-weight: 800;">
+                <i class="fa-solid fa-map-location-dot" style="color: var(--color-primary); margin-right: 10px;"></i>
+                <span data-lang-key="map_title">Peta Lokasi Dusun Wungurejo</span>
+            </h3>
+            <!-- Kotak Preview Peta - Klik untuk Buka Penuh -->
+            <div id="webgis-preview-card" onclick="openWebGISFullscreen()" data-aos="fade-up" style="
+                margin-top: 10px; border-radius: 16px; overflow: hidden;
+                position: relative; cursor: pointer;
+                box-shadow: 0 8px 32px rgba(108,8,32,0.18);
+                transition: transform 0.3s, box-shadow 0.3s;">
+                <!-- Iframe preview (tidak interaktif, hanya tampilan) -->
+                <iframe src="Peta/Peta%20Wungurejo%20WebGIS/qgis2web_2026_07_22-15_46_58_338224/index.html"
+                    style="width:100%; height:420px; border:none; display:block; pointer-events:none;"
+                    tabindex="-1"></iframe>
+                <!-- Overlay klik di atas iframe -->
+                <div style="
+                    position: absolute; inset: 0;
+                    background: linear-gradient(to top, rgba(108,8,32,0.8) 0%, rgba(0,0,0,0.08) 55%);
+                    display: flex; flex-direction: column;
+                    align-items: center; justify-content: flex-end;
+                    padding-bottom: 32px; gap: 10px;">
+                    <div style="
+                        background: rgba(255,255,255,0.18);
+                        backdrop-filter: blur(10px);
+                        border: 1.5px solid rgba(255,255,255,0.45);
+                        border-radius: 50px; padding: 12px 28px;
+                        display: flex; align-items: center; gap: 10px;
+                        color: #fff; font-weight: 800; font-size: 15px;
+                        box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+                        <i class="fa-solid fa-expand" style="font-size:16px;"></i>
+                        <span>Buka Peta WebGIS Penuh</span>
+                    </div>
+                    <p style="color:rgba(255,255,255,0.8); font-size:12px; margin:0; text-align:center;">
+                        <i class="fa-solid fa-hand-pointer" style="margin-right:5px;"></i>
+                        Klik untuk membuka peta interaktif lengkap
+                    </p>
+                </div>
+            </div>
+
+            <!-- ================================================ -->
+            <!-- WEBGIS FULLSCREEN: Overlay (hanya background+iframe) -->
+            <!-- ================================================ -->
+            <div id="webgis-fullscreen-overlay" style="
+                display: none;
+                position: fixed;
+                top: 0; left: 0;
+                width: 100vw; height: 100vh;
+                z-index: 1999999;
+                background: #000;">
+                <iframe id="webgis-iframe-full" src=""
+                    style="position: absolute; top: 0; left: 0;
+                           width: 100%; height: 100%;
+                           border: none; display: block;">
+                </iframe>
+            </div>
+
+            <!-- ================================================ -->
+            <!-- TOMBOL KEMBALI — FIXED MANDIRI di body level      -->
+            <!-- Posisi: KIRI BAWAH (area kosong pada peta)        -->
+            <!-- ================================================ -->
+            <button id="webgis-close-btn"
+                onclick="closeWebGISFullscreen()"
+                style="
+                    display: none;
+                    position: fixed;
+                    bottom: 30px;
+                    left: 30px;
+                    z-index: 2000001;
+                    background: rgba(255, 255, 255, 0.95);
+                    color: #6c0820;
+                    border: 1px solid rgba(108, 8, 32, 0.2);
+                    border-radius: 12px;
+                    padding: 12px 20px;
+                    font-size: 14px;
+                    font-weight: 700;
+                    font-family: inherit;
+                    cursor: pointer;
+                    white-space: nowrap;
+                    box-shadow: 0 8px 25px rgba(0,0,0,0.2), 0 2px 5px rgba(0,0,0,0.1);
+                    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+                    pointer-events: auto;
+                    display: none; /* diatur oleh js */
+                    align-items: center;
+                    gap: 8px;">
+                <div style="background: #6c0820; color: white; border-radius: 50%; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;">
+                    <i class="fa-solid fa-arrow-left" style="font-size:12px;"></i>
+                </div>
+                <span>Tutup Peta</span>
+            </button>
+
+            <style>
+            #webgis-preview-card:hover {
+                transform: scale(1.012);
+                box-shadow: 0 16px 48px rgba(108,8,32,0.3);
+            }
+            #webgis-close-btn:hover {
+                background: #ffffff !important;
+                transform: translateY(-3px) !important;
+                box-shadow: 0 12px 30px rgba(0,0,0,0.25), 0 4px 10px rgba(0,0,0,0.15) !important;
+            }
+            @media (max-width: 600px) {
+                #webgis-close-btn {
+                    bottom: 20px !important;
+                    left: 20px !important;
+                    padding: 10px 16px !important;
+                    font-size: 13px !important;
+                }
+            }
+            </style>
+
+            <script>
+            var webgisOverlayMoved = false;
+
+            function openWebGISFullscreen() {
+                var overlay = document.getElementById('webgis-fullscreen-overlay');
+                var closeBtn = document.getElementById('webgis-close-btn');
+                var iframe   = document.getElementById('webgis-iframe-full');
+                var src = 'Peta/Peta%20Wungurejo%20WebGIS/qgis2web_2026_07_22-15_46_58_338224/index.html';
+
+                // Fix stacking context (AOS transform bug): move to body directly
+                if (!webgisOverlayMoved) {
+                    document.body.appendChild(overlay);
+                    document.body.appendChild(closeBtn);
+                    webgisOverlayMoved = true;
+                }
+
+                overlay.style.display  = 'block';
+                closeBtn.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+
+                if (iframe.src.indexOf('qgis2web') === -1) {
+                    iframe.src = src;
+                }
+            }
+            function closeWebGISFullscreen() {
+                document.getElementById('webgis-fullscreen-overlay').style.display = 'none';
+                document.getElementById('webgis-close-btn').style.display = 'none';
+                document.body.style.overflow = '';
+            }
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') closeWebGISFullscreen();
+            });
+            </script>
+        </div>
+
+    </section>
+
+    <!-- E-Katalog UMKM Section -->
+    <section id="umkm" class="umkm-section section-padding page-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-lang-key="umkm_tag">Pemberdayaan Ekonomi</span>
+                <h2 class="section-title" data-lang-key="umkm_title">E-Katalog Potensi UMKM Wungurejo</h2>
+                <p class="section-subtitle" data-lang-key="umkm_subtitle">Dukung kemandirian ekonomi lokal dengan
+                    membeli produk unggulan asli dari warga Dusun Wungurejo.</p>
+            </div>
+
+            <!-- UMKM Search Bar -->
+            <div class="umkm-search-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <div class="umkm-search-box">
+                    <i class="fa-solid fa-magnifying-glass umkm-search-icon"></i>
+                    <input
+                        type="text"
+                        id="umkm-search-input"
+                        class="umkm-search-input"
+                        placeholder="Cari produk atau kategori UMKM... (contoh: madu, bengkel, kripik)"
+                        autocomplete="off"
+                    />
+                    <button id="umkm-search-clear" class="umkm-search-clear" aria-label="Hapus pencarian" style="display:none;">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+                <div id="umkm-search-info" class="umkm-search-info" style="display:none;"></div>
+            </div>
+
+            <div class="umkm-grid" id="umkm-grid">
+                <!-- UMKM Item 1 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="100" data-umkm-id="1">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT03/Pengrajin_Popor_SenapanKayu/IMG_0998_final.JPG" alt="Kerajinan Popor Senapan Kayu">
+                        <div class="umkm-badge">Kerajinan Khas</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Kerajinan Popor Senapan Kayu</h3>
+                        <p>Mahakarya seni ukir kayu berkualitas tinggi oleh pengrajin lokal.</p>
+                        <div class="umkm-price">Mulai dari Rp 250.000</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 2 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="200" data-umkm-id="2">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT06/Madu_TBS/IMG_0850_final.JPG" alt="Griya Sehat TBS Gunungkidul">
+                        <div class="umkm-badge">Hasil Peternakan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Griya Sehat TBS Gunungkidul</h3>
+                        <p>Madu murni kaya antioksidan langsung dari peternakan lebah tanpa sengat.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 3 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="300" data-umkm-id="3">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/images/umkm_ikan.png" alt="Peternakan Ikan Segar">
+                        <div class="umkm-badge">Hasil Peternakan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Bibit & Konsumsi Ikan Air Tawar</h3>
+                        <p>Menyediakan bibit ikan dan ikan siap konsumsi hasil budidaya Bapak Sugino Wiryo.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 4 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="400" data-umkm-id="4">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT01/kripik_singkong_ibu_anik/IMG_0554.JPG" alt="Kripik Singkong">
+                        <div class="umkm-badge">Olahan Pangan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Kripik Singkong & Pisang Ibu Anik</h3>
+                        <p>Olahan renyah kripik singkong dan pisang dari bahan berkualitas.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 5 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="500" data-umkm-id="5">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT01/Jahe_instant_KWT_Ngudi_Makmur/IMG_0551.JPG" alt="Jahe Instan">
+                        <div class="umkm-badge">Minuman Herbal</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Jahe Instan KWT Ngudi Makmur</h3>
+                        <p>Minuman serbuk jahe instan yang menyehatkan dan praktis diseduh.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 6 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="600" data-umkm-id="6">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT02/Duwisty_Snack/IMG_0520.JPG" alt="Duwisty Snack">
+                        <div class="umkm-badge">Olahan Pangan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Duwisty Snack</h3>
+                        <p>Aneka camilan ringan lezat, renyah, dan cocok untuk segala suasana.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 7 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="700" data-umkm-id="7">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT02/Hikmah_Bakery/IMG_0525.JPG" alt="Hikmah Bakery">
+                        <div class="umkm-badge">Olahan Pangan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Hikmah Bakery</h3>
+                        <p>Aneka roti dan kue lezat, lembut, dan fresh setiap harinya.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 8 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="800" data-umkm-id="8">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT02/Warung_Ibu_Umi/IMG_0548.JPG" alt="Warung Ibu Umi">
+                        <div class="umkm-badge">Toko Kelontong</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Warung Ibu Umi</h3>
+                        <p>Toko kelontong menyediakan kebutuhan sehari-hari warga dengan harga terjangkau.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 9 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="900" data-umkm-id="9">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT03/Meubel_Pak_Wasimin/IMG_0527.JPG" alt="Meubel Pak Wasimin">
+                        <div class="umkm-badge">Kerajinan Kayu</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Meubel Pak Wasimin</h3>
+                        <p>Furnitur dan perabot kayu berkualitas, dikerjakan oleh pengrajin berpengalaman.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 10 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1000" data-umkm-id="10">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT03/Meubel_Pak_Puryanto/IMG_0530.JPG" alt="Meubel Pak Puryanto">
+                        <div class="umkm-badge">Kerajinan Kayu</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Meubel Pak Puryanto</h3>
+                        <p>Furnitur dan perabot kayu berkualitas, melayani pesanan sesuai kebutuhan.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 11 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1100" data-umkm-id="11">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT03/Pecel_Mbah_Tini/IMG_0562.JPG" alt="Pecel Mbah Tini">
+                        <div class="umkm-badge">Kuliner Lokal</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Pecel Mbah Tini</h3>
+                        <p>Nasi pecel lezat dengan bumbu kacang khas dan sayuran segar.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 12 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1200" data-umkm-id="12">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT03/Tikar_Mendong_Mbah_Tuminem/IMG_0526.JPG" alt="Tikar Mendong Mbah Tuminem">
+                        <div class="umkm-badge">Kerajinan Tangan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Tikar Mendong Mbah Tuminem</h3>
+                        <p>Tikar anyaman mendong tradisional, awet, nyaman, dan ramah lingkungan.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 13 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1300" data-umkm-id="13">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT03/Bengkel_AB_SQUAD/IMG_0535.JPG?v=3" alt="Bengkel AB SQUAD">
+                        <div class="umkm-badge">Jasa Servis Motor & Mobil</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Bengkel AB SQUAD</h3>
+                        <p>Servis motor & mobil, perbaikan mesin, ganti oli, dan tune up.</p>
+                        <div class="umkm-price">Sesuai Kerusakan</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 14 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1400" data-umkm-id="14">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT04/Fergi_Bengkel/IMG_0477.JPG?v=2" alt="Bengkel Fergi">
+                        <div class="umkm-badge">Jasa Servis Mobil</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Bengkel Fergi</h3>
+                        <p>Spesialis servis dan perbaikan kendaraan roda empat yang terpercaya.</p>
+                        <div class="umkm-price">Sesuai Kerusakan</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 15 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1500" data-umkm-id="15">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT04/Ibu_Wacik_Sayur/IMG_0544.JPG" alt="Warung Sayur Ibu Wacik">
+                        <div class="umkm-badge">Warung Sayur</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Warung Sayur Ibu Wacik</h3>
+                        <p>Menyediakan berbagai macam sayuran segar, bumbu dapur, dan kebutuhan harian.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 16 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1600" data-umkm-id="16">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT04/FFS_(Fam_Fergi_Sabriansyah)_Ternak_Ayam_Petelur/IMG_0522.JPG" alt="FFS Ternak Ayam Petelur">
+                        <div class="umkm-badge">Hasil Peternakan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>FFS Ternak Ayam Petelur</h3>
+                        <p>Peternakan ayam petelur berkualitas yang menghasilkan telur segar setiap harinya.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 17 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1700" data-umkm-id="17">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT04/Jual_Beli_Kambing_Pak_Sutikno/IMG_0483.JPG" alt="Jual Beli Kambing Pak Sutikno">
+                        <div class="umkm-badge">Hasil Peternakan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Jual Beli Kambing Pak Sutikno</h3>
+                        <p>Melayani jual beli kambing berkualitas untuk aqiqah, qurban, maupun ternak.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 18 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1800" data-umkm-id="18">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT04/Penanam_Cabai_Mas_Rida/IMG_0541.JPG" alt="Penanam Cabai Mas Rida">
+                        <div class="umkm-badge">Hasil Pertanian</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Penanam Cabai Mas Rida</h3>
+                        <p>Hasil panen cabai berkualitas dan segar langsung dari kebun Mas Rida.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 19 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="1900" data-umkm-id="19">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT06/Anyaman_Tikar_Mendong_Ibu_Sugiyanto/IMG_0516.JPG" alt="Anyaman Tikar Mendong Ibu Sugiyanto">
+                        <div class="umkm-badge">Kerajinan Tangan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Anyaman Tikar Mendong Ibu Sugiyanto</h3>
+                        <p>Tikar anyaman mendong tradisional, sejuk, kuat, dan ramah lingkungan.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 20 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="2000" data-umkm-id="20">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT05/Ngatijo_Cilok/IMG_0539.JPG" alt="Cilok Pak Ngatijo">
+                        <div class="umkm-badge">Kuliner Lokal</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Cilok Pak Ngatijo</h3>
+                        <p>Jajanan cilok khas buatan Pak Ngatijo yang kenyal, gurih, dan lezat dengan bumbu spesial.</p>
+                        <div class="umkm-price">Mulai dari Rp 5.000</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 21 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="2100" data-umkm-id="21">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT03/Toko_Qutis/IMG_0771.JPG" alt="Toko Qutis">
+                        <div class="umkm-badge">Toko Kelontong</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Toko Qutis</h3>
+                        <p>Menyediakan berbagai macam kebutuhan pokok dan sehari-hari dengan harga terjangkau.</p>
+                        <div class="umkm-price">Harga Terjangkau</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- UMKM Item 22 -->
+                <div class="umkm-card umkm-clickable" data-aos="fade-up" data-aos-delay="2200" data-umkm-id="22">
+                    <div class="umkm-img-wrap">
+                        <img src="assets/KatalogUMKM/RT04/Brigaz_Sablon/IMG_0770.JPG?v=5" alt="Brigaz Sablon">
+                        <div class="umkm-badge">Jasa & Layanan</div>
+                        <div class="umkm-overlay-hint"><i class="fa-solid fa-expand"></i> Lihat Detail</div>
+                    </div>
+                    <div class="umkm-content">
+                        <h3>Brigaz Sablon</h3>
+                        <p>Melayani jasa sablon berkualitas untuk kaos, jaket, seragam, dan kebutuhan lainnya.</p>
+                        <div class="umkm-price">Harga Bervariasi</div>
+                        <button class="btn btn-detail-umkm"><i class="fa-solid fa-circle-info"></i> Lihat Detail & Lokasi</button>
+                    </div>
+                </div>
+
+                <!-- Pesan Tidak Ditemukan -->
+                <div class="umkm-no-result" id="umkm-no-result">
+                    <div class="umkm-no-result-icon"><i class="fa-solid fa-box-open"></i></div>
+                    <h4>Produk tidak ditemukan</h4>
+                    <p>Coba kata kunci lain, misalnya: <strong>madu</strong>, <strong>kripik</strong>, atau <strong>bengkel</strong>.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- UMKM Detail Modal -->
+    <div id="umkm-modal-overlay" class="umkm-modal-overlay">
+        <div class="umkm-modal-box">
+            <button id="umkm-modal-close" class="umkm-modal-close" aria-label="Tutup"><i class="fa-solid fa-xmark"></i></button>
+
+            <!-- Image Gallery -->
+            <div class="umkm-modal-gallery">
+                <div class="umkm-gallery-main">
+                    <img id="umkm-modal-main-img" src="" alt="Foto Produk">
+                </div>
+                <div class="umkm-gallery-thumbs" id="umkm-gallery-thumbs"></div>
+            </div>
+
+            <!-- Content -->
+            <div class="umkm-modal-content">
+                <span id="umkm-modal-badge" class="umkm-modal-badge-tag"></span>
+                <h2 id="umkm-modal-name" class="umkm-modal-name"></h2>
+                <p id="umkm-modal-price" class="umkm-modal-price"></p>
+                <p id="umkm-modal-desc" class="umkm-modal-desc"></p>
+                <p id="umkm-modal-owner" class="umkm-modal-owner"></p>
+
+                <!-- Google Maps Embed -->
+                <div class="umkm-modal-map-wrap">
+                    <div class="umkm-modal-map-label"><i class="fa-solid fa-location-dot"></i> Lokasi di Google Maps</div>
+                    <a id="umkm-modal-map" href="#" target="_blank" class="btn btn-primary" style="display:block; text-align:center; margin-bottom:15px; border-radius: 8px; padding: 10px; font-weight: 500; font-family: 'Outfit', sans-serif;">
+                        <i class="fa-solid fa-map-location-dot"></i> Buka Rute di Google Maps
+                    </a>
+                </div>
+
+                <a id="umkm-modal-wa-btn" href="#" target="_blank" class="btn btn-wa umkm-modal-wa">
+                    <i class="fa-brands fa-whatsapp"></i> Pesan via WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Program Kerja (Proker) Section -->
+    <section id="proker" class="proker-section section-padding page-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-lang-key="proker_tag">Rencana Aksi</span>
+                <h2 class="section-title" data-lang-key="proker_title">Program Kerja Pengabdian</h2>
+                <p class="section-subtitle" data-lang-key="proker_subtitle">Inisiatif program kerja KKN Kelompok AB
+                    84.095 yang terbagi berdasarkan kategori pelaksanaan.</p>
+            </div>
+
+            <!-- Proker Filters -->
+            <div class="proker-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="filter-btn active" data-filter="all" data-lang-key="filter_all">Semua</button>
+                <button class="filter-btn" data-filter="Proker Bersama" data-lang-key="filter_bersama">Proker
+                    Bersama</button>
+                <button class="filter-btn" data-filter="Proker Individu" data-lang-key="filter_individu">Proker
+                    Individu</button>
+            </div>
+
+            <!-- Proker Grid -->
+            <div class="proker-grid" id="proker-grid-container">
+                <div class="loading-spinner-wrapper"
+                    style="display: flex; justify-content: center; align-items: center; padding: 40px; width: 100%;">
+                    <div class="loader-spinner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logbook Timeline Section -->
+    <section id="logbook" class="logbook-section section-padding page-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-lang-key="logbook_tag">Log Harian</span>
+                <h2 class="section-title" data-lang-key="logbook_title">Timeline & Kegiatan Terbaru</h2>
+                <p class="section-subtitle" data-lang-key="logbook_subtitle">Catatan dokumentasi harian kegiatan
+                    pengabdian KKN AB 84.095.</p>
+            </div>
+
+            <!-- Logbook Filters -->
+            <div class="logbook-filters" data-aos="fade-up" data-aos-delay="100">
+                <button class="logbook-filter-btn active" data-filter="all" data-lang-key="filter_all_phase">Semua
+                    Fase</button>
+                <button class="logbook-filter-btn" data-filter="Pra-KKN" data-lang-key="filter_prakkn">Pra-KKN</button>
+                <button class="logbook-filter-btn" data-filter="Pelaksanaan KKN"
+                    data-lang-key="filter_pelaksanaan">Pelaksanaan KKN</button>
+            </div>
+
+            <div class="timeline" id="logbook-timeline-container">
+                <div class="loading-spinner-wrapper"
+                    style="display: flex; justify-content: center; align-items: center; padding: 40px; width: 100%;">
+                    <div class="loader-spinner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog/Artikel Section -->
+    <section id="blog" class="blog-section section-padding page-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-lang-key="blog_tag">Kabar & Artikel</span>
+                <h2 class="section-title" data-lang-key="blog_title">Cerita dari Wungurejo</h2>
+                <p class="section-subtitle" data-lang-key="blog_subtitle">Kumpulan tulisan inspiratif, sejarah dusun,
+                    dan artikel ringan dari kegiatan pengabdian kami.</p>
+            </div>
+            <div class="blog-grid" id="blog-grid-container">
+                <div class="loading-spinner-wrapper"
+                    style="display: flex; justify-content: center; align-items: center; padding: 40px; width: 100%;">
+                    <div class="loader-spinner"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scrollytelling Impact Report Section -->
+    
+
+    <!-- Gallery Section -->
+    <section id="galeri" class="gallery-section page-section" style="padding-top: 0 !important; padding-bottom: 100px;">
+
+        <!-- ① Scrollytelling: dedicated 400vh container so sticky works perfectly -->
+        <div id="gallery-scrolly-trigger" class="gallery-scrolly-trigger">
+            <div class="gallery-scrolly-sticky">
+                <div class="scrolly-content">
+                    <div class="scrolly-text" id="scroll-text-1">
+                        <span class="scrolly-highlight">31 Hari</span> Pengabdian...
+                    </div>
+                    <div class="scrolly-text" id="scroll-text-2">
+                        <span class="scrolly-highlight">16</span> Program Kerja Terlaksana
+                    </div>
+                    <div class="scrolly-text" id="scroll-text-3">
+                        <span class="scrolly-highlight">430+</span> Warga Dusun Terjangkau
+                    </div>
+                    <div class="scrolly-text" id="scroll-text-4">
+                        Meninggalkan <span class="scrolly-highlight">Jejak Digital Abadi</span> di Wungurejo.
+                    </div>
+                </div>
+
+                <div class="scrolly-dots" id="scrolly-dots">
+                    <div class="scrolly-dot active" data-index="0"></div>
+                    <div class="scrolly-dot" data-index="1"></div>
+                    <div class="scrolly-dot" data-index="2"></div>
+                    <div class="scrolly-dot" data-index="3"></div>
+                </div>
+
+                <div class="scroll-indicator">
+                    <p>Scroll untuk melihat dampak</p>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- ② Section header + Masonry Gallery: below scrollytelling -->
+        <div class="container container-wide">
+            <div class="section-header" data-aos="fade-up" style="margin-top: 60px;">
+                <span class="section-tag" data-lang-key="gallery_tag">Pesona Wungurejo</span>
+                <h2 class="section-title" data-lang-key="gallery_title">Galeri Pengabdian</h2>
+                <p class="section-subtitle" data-lang-key="gallery_subtitle">Potret keindahan alam dan momen berharga
+                    selama pelaksanaan KKN Kelompok AB 84.095.</p>
+            </div>
+
+            <div class="masonry-gallery" id="masonry-gallery-container">
+                <div class="loading-spinner-wrapper"
+                    style="display: flex; justify-content: center; align-items: center; padding: 40px; width: 100%; grid-column: 1 / -1;">
+                    <div class="loader-spinner"></div>
+                </div>
+                <!-- Gallery items will be injected here by app.js -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section id="tim" class="team-section section-padding page-section">
+        <div class="container container-wide">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-lang-key="tim_tag">Anggota Kelompok</span>
+                <h2 class="section-title" data-lang-key="tim_title">Di Balik Layar KKN AB 84.095</h2>
+                <p class="section-subtitle" data-lang-key="tim_subtitle">Arahkan kursor dan klik pada foto anggota
+                    kelompok untuk melihat profil lengkap mereka.</p>
+            </div>
+
+            <div class="team-interactive-container" data-aos="zoom-in" data-aos-delay="100">
+                <!-- Group Photo Side -->
+                <div class="team-photo-wrapper">
+
+                    <img src="assets/team/FOTOBERSAMA3_web.jpg" alt="KKN AB 84.095 Group Photo" class="base-photo"
+                        id="team-base-photo">
+
+                    <!-- Per-person clip-path highlight layers -->
+                    <!-- Back Row -->
+                    <div class="person-highlight" id="clip-laksa"
+                        style="--clip-path: polygon(3% 33%, 23% 33%, 27% 48%, 23% 82%, 3% 82%)"></div>
+                    <div class="person-highlight" id="clip-ahmad"
+                        style="--clip-path: polygon(23% 28%, 38% 28%, 38% 45%, 23% 45%)"></div>
+                    <div class="person-highlight" id="clip-sabrina"
+                        style="--clip-path: polygon(42% 33%, 55% 33%, 55% 46%, 42% 46%)"></div>
+                    <div class="person-highlight" id="clip-havez"
+                        style="--clip-path: polygon(60% 31%, 74% 31%, 74% 46%, 60% 46%)"></div>
+                    <div class="person-highlight" id="clip-anas"
+                        style="--clip-path: polygon(74% 33%, 95% 33%, 98% 50%, 88% 85%, 74% 85%)"></div>
+
+                    <!-- Middle Row -->
+                    <div class="person-highlight" id="clip-nabila"
+                        style="--clip-path: polygon(34% 37%, 48% 37%, 48% 51%, 34% 51%)"></div>
+                    <div class="person-highlight" id="clip-fanida"
+                        style="--clip-path: polygon(52% 37%, 67% 37%, 67% 52%, 52% 52%)"></div>
+
+                    <!-- Front Row -->
+                    <div class="person-highlight" id="clip-lyra"
+                        style="--clip-path: polygon(18% 44%, 41% 44%, 41% 65%, 35% 88%, 18% 88%)"></div>
+                    <div class="person-highlight" id="clip-dian"
+                        style="--clip-path: polygon(38% 46%, 61% 46%, 61% 70%, 53% 97%, 38% 97%)"></div>
+                    <div class="person-highlight" id="clip-shofa"
+                        style="--clip-path: polygon(55% 45%, 79% 45%, 79% 65%, 75% 88%, 55% 88%)"></div>
+
+                    <!-- SVG Hotspot Map -->
+                    <svg viewBox="0 0 100 100" preserveAspectRatio="none" class="team-svg-map" id="team-svg">
+                        <!-- Back Row -->
+                        <polygon points="3,33 23,33 27,48 23,82 3,82" class="hotspot" data-member="laksa"></polygon>
+                        <polygon points="23,28 38,28 38,45 23,45" class="hotspot" data-member="ahmad"></polygon>
+                        <polygon points="42,33 55,33 55,46 42,46" class="hotspot" data-member="sabrina"></polygon>
+                        <polygon points="60,31 74,31 74,46 60,46" class="hotspot" data-member="havez"></polygon>
+                        <polygon points="74,33 95,33 98,50 88,85 74,85" class="hotspot" data-member="anas"></polygon>
+
+                        <!-- Middle Row -->
+                        <polygon points="34,37 48,37 48,51 34,51" class="hotspot" data-member="nabila"></polygon>
+                        <polygon points="52,37 67,37 67,52 52,52" class="hotspot" data-member="fanida"></polygon>
+
+                        <!-- Front Row -->
+                        <polygon points="18,44 41,44 41,65 35,88 18,88" class="hotspot" data-member="lyra"></polygon>
+                        <polygon points="38,46 61,46 61,70 53,97 38,97" class="hotspot" data-member="dian"></polygon>
+                        <polygon points="55,45 79,45 79,65 75,88 55,88" class="hotspot" data-member="shofa"></polygon>
+                    </svg>
+
+                    <!-- Hover Tooltip -->
+                    <div class="team-tooltip" id="team-tooltip">Nama Anggota</div>
+                </div>
+
+                <!-- Profile Card Side -->
+                <div class="team-detail-wrapper">
+                    <div class="team-detail-card" id="team-detail-card">
+                        <div class="team-detail-placeholder" id="team-detail-placeholder">
+                            <i class="fa-solid fa-arrow-pointer"></i>
+                            <p data-lang-key="tim_placeholder">Klik salah satu anggota kelompok pada foto untuk melihat
+                                profil lengkap.</p>
+                        </div>
+                        <div class="team-detail-content hidden" id="team-detail-content">
+                            <div class="detail-avatar-box">
+                                <i class="fa-solid fa-user" id="detail-icon"></i>
+                                <img src="" alt="" id="detail-photo" class="detail-photo hidden">
+                            </div>
+                            <h3 class="detail-name" id="detail-name">Nama Anggota</h3>
+                            <span class="detail-role" id="detail-role">Jabatan</span>
+                            <span class="detail-major" id="detail-major">Program Studi</span>
+                            <p class="detail-quote" id="detail-quote">"Kutipan motivasi atau peran pengabdian di desa."
+                            </p>
+                            <div class="detail-socials">
+                                <a href="#" id="detail-ig" target="_blank" aria-label="Instagram"><i
+                                        class="fa-brands fa-instagram"></i> Instagram</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Guestbook Section -->
+    <section id="guestbook" class="guestbook-section section-padding page-section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <span class="section-tag" data-lang-key="gb_tag">Pesan & Saran</span>
+                <h2 class="section-title" data-lang-key="gb_title">Buku Tamu Interaktif</h2>
+                <p class="section-subtitle" data-lang-key="gb_subtitle">Silakan tinggalkan pesan, masukan, atau kesan
+                    bagi KKN Kelompok AB 84.095
+                    selama di Dusun Wungurejo.</p>
+            </div>
+
+            <div class="guestbook-grid">
+                <!-- Kirim Pesan Side -->
+                <div class="guestbook-form-card" data-aos="fade-right" data-aos-delay="100">
+                    <h3><i class="fa-solid fa-comment-dots" style="color: var(--color-primary); margin-right: 8px;"></i>
+                        Tinggalkan Pesan</h3>
+                    <p
+                        style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 28px; line-height: 1.6;">
+                        Pesan Anda akan langsung diteruskan ke WhatsApp tim kami atau melalui Google Form resmi.
+                    </p>
+
+                    <!-- Pilihan 1: WhatsApp Anas -->
+                    <a href="https://wa.me/6282243136157"
+                        target="_blank" class="btn btn-primary btn-block"
+                        style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 14px; text-decoration: none;">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700;">Chat Anas Rifai</div>
+                            <div style="font-size: 0.78rem; opacity: 0.85;">Ketua KKN AB 84.095</div>
+                        </div>
+                    </a>
+
+                    <!-- Pilihan 2: WhatsApp Mas Budi -->
+                    <a href="https://wa.me/6285973199213"
+                        target="_blank" class="btn btn-wa btn-block"
+                        style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 14px; text-decoration: none; background: linear-gradient(135deg, #25D366, #128C7E); color: #fff; border: none;">
+                        <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700;">Chat Mas Budi</div>
+                            <div style="font-size: 0.78rem; opacity: 0.85;">Ketua Karang Taruna Dusun Wungurejo</div>
+                        </div>
+                    </a>
+
+                    <!-- Pilihan 3: Google Form -->
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScM9YD5FKCow25sbQQKkjxDNrlgcs-Ob1zmyScFfNMs7Doadw/viewform?usp=publish-editor"
+                        target="_blank" class="btn btn-secondary btn-block"
+                        style="display: flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none;">
+                        <i class="fa-solid fa-file-pen" style="font-size: 1.1rem;"></i>
+                        <div style="text-align: left;">
+                            <div style="font-weight: 700;">Isi via Google Form</div>
+                            <div style="font-size: 0.78rem; opacity: 0.85;">Formulir online resmi kami</div>
+                        </div>
+                    </a>
+
+                    <div
+                        style="margin-top: 20px; padding: 14px; background: rgba(108,8,32,0.04); border-radius: 12px; border-left: 3px solid var(--color-primary);">
+                        <p style="font-size: 0.8rem; color: var(--color-text-muted); margin: 0; line-height: 1.5;">
+                            <i class="fa-solid fa-circle-info"
+                                style="color: var(--color-primary); margin-right: 5px;"></i>
+                            Pesan yang masuk akan kami tampilkan di sisi kanan setelah diverifikasi oleh tim KKN.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action (Social Media) Section -->
+    <section class="cta-section section-padding">
+        <div class="container">
+            <div class="cta-container" data-aos="zoom-in">
+                <div class="cta-content">
+                    <h2 data-lang-key="cta_title">Ikuti Perjalanan KKN Kami!</h2>
+                    <p data-lang-key="cta_desc">Dapatkan update terbaru seputar program kerja dan kegiatan sehari-hari
+                        kami di Dusun Wungurejo melalui Instagram dan TikTok resmi kelompok.</p>
+                </div>
+                <div class="cta-actions">
+                    <a href="https://www.instagram.com/about.wungurejo?igsh=MW5iZzh1dG13cnBzbQ==" target="_blank"
+                        class="btn btn-social-instagram">
+                        <i class="fa-brands fa-instagram"></i> @about.wungurejo
+                    </a>
+                    <a href="https://www.tiktok.com/@about.wungurejo?_r=1&_t=ZS-97MWoP1DUMz" target="_blank"
+                        class="btn btn-social-tiktok">
+                        <i class="fa-brands fa-tiktok"></i> @about.wungurejo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-bottom">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <img src="assets/logo/LogoKKNBaru.png" alt="Logo KKN" class="footer-logo">
+                <img src="assets/logo/logoupn.png" alt="Logo UPN Veteran Yogyakarta"
+                    class="footer-logo footer-upn-logo">
+                <div>
+                    <h4>KKN AB 84.095</h4>
+                    <p>UPN "Veteran" Yogyakarta - <span data-lang-key="footer_loc">Desa Dusun Wungurejo, Pengkol,
+                            Nglipar, Gunung Kidul</span></p>
+                </div>
+            </div>
+            <p class="copyright"><span data-lang-key="footer_copy">&copy; 2026 KKN Kelompok AB 84.095. All Rights
+                    Reserved. Made with</span> <i class="fa-solid fa-heart"></i> <span data-lang-key="footer_for">for
+                    Wungurejo.</span></p>
+        </div>
+    </footer>
+
+    <!-- BLOG READER MODAL (Dedicated, Premium Design) -->
+    <div id="blog-reader-modal" class="blog-reader-overlay hidden" onclick="closeBlogReaderModal(event)">
+        <div class="blog-reader-container">
+            <!-- Close Button -->
+            <button class="blog-reader-close" onclick="closeBlogReaderModal(null)" aria-label="Tutup">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <!-- Hero Image Area -->
+            <div class="blog-reader-hero" id="blog-reader-hero">
+                <div class="blog-reader-hero-overlay"></div>
+                <img id="blog-reader-hero-img" src="" alt="" class="blog-reader-hero-img hidden">
+                <div class="blog-reader-hero-placeholder hidden" id="blog-reader-hero-placeholder">
+                    <i class="fa-solid fa-newspaper"></i>
+                </div>
+                <div class="blog-reader-hero-meta">
+                    <span class="blog-reader-badge" id="blog-reader-badge">Artikel</span>
+                    <span class="blog-reader-date" id="blog-reader-date"></span>
+                </div>
+            </div>
+
+            <!-- Content Body -->
+            <div class="blog-reader-body">
+                <h1 class="blog-reader-title" id="blog-reader-title"></h1>
+                <div class="blog-reader-divider"></div>
+                <div class="blog-reader-content markdown-body" id="blog-reader-content"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. DETAILS MODAL -->
+    <div id="details-modal" class="custom-modal hidden">
+        <div class="custom-modal-backdrop" onclick="closeDetailsModal()"></div>
+        <div class="custom-modal-content">
+            <button class="custom-modal-close" onclick="closeDetailsModal()" aria-label="Close modal"><i
+                    class="fa-solid fa-xmark"></i></button>
+            <div class="custom-modal-header">
+                <span id="modal-category-badge" class="badge">Kategori</span>
+                <span id="modal-date" class="modal-date">Tanggal</span>
+                <h2 id="modal-title" class="modal-title">Judul Proker / Logbook</h2>
+            </div>
+            <div class="custom-modal-body">
+                <div class="modal-split-layout">
+                    <!-- Left: Gallery Carousel -->
+                    <div class="modal-gallery-side" id="modal-gallery-side">
+                        <div class="carousel-container">
+                            <div class="carousel-track-container">
+                                <div class="carousel-track" id="carousel-track">
+                                    <!-- Dynamic Carousel items -->
+                                </div>
+                            </div>
+                            <button class="carousel-nav carousel-prev" id="carousel-prev" aria-label="Previous Image">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button class="carousel-nav carousel-next" id="carousel-next" aria-label="Next Image">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                            <div class="carousel-dots" id="carousel-dots">
+                                <!-- Dynamic Dots -->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Right: Text Content -->
+                    <div class="modal-text-side">
+                        <div id="modal-markdown-content" class="markdown-body">
+                            <!-- parsed markdown content -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6. LIGHTBOX OVERLAY -->
+    <div id="lightbox-overlay" class="lightbox-overlay hidden" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()" aria-label="Close Zoom"><i
+                class="fa-solid fa-xmark"></i></button>
+                
+        <button id="lightbox-prev" class="lightbox-nav-btn" onclick="lightboxPrev(event)" style="display:none; position:absolute; top:50%; left:20px; transform:translateY(-50%); background:rgba(0,0,0,0.5); border:none; color:white; width:44px; height:44px; border-radius:50%; font-size:1.2rem; cursor:pointer; z-index:1001; transition:background 0.3s; align-items:center; justify-content:center;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'"><i class="fa-solid fa-chevron-left"></i></button>
+        <button id="lightbox-next" class="lightbox-nav-btn" onclick="lightboxNext(event)" style="display:none; position:absolute; top:50%; right:20px; transform:translateY(-50%); background:rgba(0,0,0,0.5); border:none; color:white; width:44px; height:44px; border-radius:50%; font-size:1.2rem; cursor:pointer; z-index:1001; transition:background 0.3s; align-items:center; justify-content:center;" onmouseover="this.style.background='rgba(0,0,0,0.8)'" onmouseout="this.style.background='rgba(0,0,0,0.5)'"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightbox-image" src="" alt="Zoomed Image" style="user-select: none;">
+            <div id="lightbox-caption" class="lightbox-caption" style="display:none;">
+                <h4 id="lightbox-caption-title"></h4>
+                <p id="lightbox-caption-desc"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS for WebGIS -->
+    <script src="assets/vendor/leaflet/leaflet.js"></script>
+    <!-- Marked.js for Markdown parsing -->
+    <script src="assets/vendor/marked/marked.min.js"></script>
+    <!-- AOS Animation JS -->
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100,
+        });
+    </script>
+
+    <!-- Vanilla-Tilt JS for 3D card effects -->
+    <script src="assets/vendor/vanilla-tilt/vanilla-tilt.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            VanillaTilt.init(document.querySelectorAll(".vm-card, .visual-card"), {
+                max: 10,
+                speed: 400,
+                glare: true,
+                "max-glare": 0.3,
+                scale: 1.02
+            });
+        });
+    </script>
+    <!-- Multi-Language Dictionary -->
+    <script src="lang.js?v=5"></script>
+    <!-- App Script -->
+    <script src="app.js?v=53"></script>
+    <!-- PWA Service Worker Registration -->
+    <script>
+        // PWA Disabled Temporarily for Development
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+                for(let registration of registrations) {
+                    registration.unregister();
+                    console.log('ServiceWorker unregistered successfully.');
+                }
+            });
+        }
+    </script>
+    <!-- Pillar Card Hover Animation (Inline - bypass SW cache) -->
+    <script>
+        (function () {
+            function initPillarAnimation() {
+                var cards = document.querySelectorAll('.pillar-card');
+                if (!cards.length) return;
+                cards.forEach(function (card) {
+                    card.style.transition = 'transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.3s ease, border-color 0.3s ease';
+                    card.style.willChange = 'transform';
+                    card.addEventListener('mouseenter', function () {
+                        this.style.transform = 'translateY(-10px) scale(1.03)';
+                        this.style.boxShadow = '0 24px 48px rgba(108,8,32,0.15)';
+                        this.style.borderColor = 'rgba(255,107,157,0.4)';
+                    });
+                    card.addEventListener('mouseleave', function () {
+                        this.style.transform = 'translateY(0) scale(1)';
+                        this.style.boxShadow = '';
+                        this.style.borderColor = '';
+                    });
+                    card.addEventListener('mousedown', function () {
+                        this.style.transform = 'translateY(-3px) scale(0.98)';
+                        this.style.boxShadow = '0 8px 16px rgba(108,8,32,0.06)';
+                    });
+                    card.addEventListener('mouseup', function () {
+                        this.style.transform = 'translateY(-10px) scale(1.03)';
+                        this.style.boxShadow = '0 24px 48px rgba(108,8,32,0.15)';
+                    });
+                });
+            }
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', initPillarAnimation);
+            } else {
+                initPillarAnimation();
+            }
+            // Also init after AOS finishes (delay safety net)
+            setTimeout(initPillarAnimation, 1500);
+        })();
+    </script>
+    <!-- Chatbot Widget (Mimin KKN) -->
+    <div class="chat-widget" id="chat-widget">
+        <div class="chat-header">
+            <span><i class="fa-solid fa-robot"></i> Mimin KKN</span>
+            <button id="close-chat" style="background:none;border:none;color:white;cursor:pointer;"><i
+                    class="fa-solid fa-xmark"></i></button>
+        </div>
+        <div class="chat-body" id="chat-body">
+            <div class="chat-msg bot-msg">Halo! &#128075; Aku Mimin KKN 84.095. Ada yang bisa kubantu terkait desa
+                Wungurejo atau proker kami?</div>
+        </div>
+        <div class="chat-options">
+            <button class="chat-opt-btn"
+                onclick="sendOpt('Apa saja Proker Kelompok?', 'Ada 3 proker kelompok utama: 1) Pembuatan Peta Administrasi Wungurejo, 2) Pelatihan Pertanian untuk KWT, dan 3) Pembuatan Database &amp; Penomoran Rumah Warga.')">Proker
+                Kelompok?</button>
+            <button class="chat-opt-btn"
+                onclick="sendOpt('Proker Individu tentang apa?', 'Proker individu kami beragam! Di antaranya: Evaluasi Kualitas Air Sumur (Havez), Pemasangan Rambu Evakuasi Bencana (Fanida), Optimalisasi Promosi Digital UMKM (Lyra), Penguatan Profil Usaha UMKM (Dian), Sosialisasi Anti Bullying &amp; Pendampingan KWT (Sabrina), Pembangunan Website Desa (Laksana), dan masih banyak lagi!')">Proker
+                Individu?</button>
+            <button class="chat-opt-btn"
+                onclick="sendOpt('Berapa total program kerja?', 'Sesuai proposal, kami memiliki total 16 Program Kerja yang terdiri dari Proker Utama (Kelompok &amp; Individu) serta Proker Pendukung seperti Senam Warga.')">Total
+                Proker?</button>
+            <button class="chat-opt-btn"
+                onclick="sendOpt('Di mana lokasi posko?', 'Posko kami terletak di Dusun Wungurejo, Kalurahan Pengkol, Nglipar, Gunungkidul. Kamu bisa lihat detail lokasinya di Peta WebGIS di halaman ini!')">Lokasi
+                Posko?</button>
+        </div>
+    </div>
+    <button class="chat-fab" id="chat-fab">
+        <i class="fa-solid fa-message"></i>
+    </button>
+
+    <script>
+        // Chatbot Logic
+        document.getElementById('chat-fab').addEventListener('click', function () {
+            var widget = document.getElementById('chat-widget');
+            widget.style.display = widget.style.display === 'flex' ? 'none' : 'flex';
+            this.style.transform = widget.style.display === 'flex' ? 'scale(0)' : 'scale(1)';
+        });
+
+        document.getElementById('close-chat').addEventListener('click', function () {
+            document.getElementById('chat-widget').style.display = 'none';
+            document.getElementById('chat-fab').style.transform = 'scale(1)';
+        });
+
+        function sendOpt(question, answer) {
+            var body = document.getElementById('chat-body');
+            body.innerHTML += '<div class="chat-msg user-msg">' + question + '</div>';
+            body.scrollTop = body.scrollHeight;
+            setTimeout(function () {
+                body.innerHTML += '<div class="chat-msg bot-msg">' + answer + '</div>';
+                body.scrollTop = body.scrollHeight;
+            }, 600);
+        }
+    </script>
+
+    <!-- (Floating PDF Button Removed) -->
+
+
+    <!-- ============================================================ -->
+    <!-- PDF GENERATOR MODAL (Surat Pengantar Padukuhan Wungurejo) -->
+    <!-- ============================================================ -->
+    <div id="pdf-modal-overlay" class="pdf-overlay" role="dialog" aria-modal="true" aria-labelledby="pdf-modal-title">
+        <div class="pdf-modal">
+            <button class="pdf-modal-close" id="pdf-modal-close" aria-label="Tutup">&times;</button>
+            <div class="pdf-modal-header">
+                <div class="pdf-modal-icon"><i class="fa-solid fa-file-signature"></i></div>
+                <h2 id="pdf-modal-title">Generator Surat Pengantar</h2>
+                <p>Format resmi Padukuhan Wungurejo &mdash; Dua salinan dalam satu lembar A4 landscape.</p>
+            </div>
+            <div class="pdf-modal-body">
+                <div class="pdf-form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="pdf-nama" placeholder="contoh: Budi Santoso">
+                </div>
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>Tempat Lahir</label>
+                        <input type="text" id="pdf-tempat-lahir" placeholder="contoh: Gunungkidul">
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>Tanggal Lahir</label>
+                        <input type="date" id="pdf-tgl-lahir">
+                    </div>
+                </div>
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>Jenis Kelamin</label>
+                        <select id="pdf-jk">
+                            <option value="Laki-laki">Laki-laki</option>
+                            <option value="Perempuan">Perempuan</option>
+                        </select>
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>Status Perkawinan</label>
+                        <select id="pdf-status">
+                            <option value="Belum Kawin">Belum Kawin</option>
+                            <option value="Kawin">Kawin</option>
+                            <option value="Cerai Hidup">Cerai Hidup</option>
+                            <option value="Cerai Mati">Cerai Mati</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>Agama</label>
+                        <select id="pdf-agama">
+                            <option value="Islam">Islam</option>
+                            <option value="Kristen">Kristen</option>
+                            <option value="Katolik">Katolik</option>
+                            <option value="Hindu">Hindu</option>
+                            <option value="Budha">Budha</option>
+                            <option value="Kepercayaan">Kepercayaan</option>
+                        </select>
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>Golongan Darah</label>
+                        <select id="pdf-goldar">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="AB">AB</option>
+                            <option value="O">O</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>Pekerjaan</label>
+                        <input type="text" id="pdf-pekerjaan" placeholder="contoh: Petani / Pelajar">
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>Pendidikan</label>
+                        <select id="pdf-pendidikan">
+                            <option value="SD">SD</option>
+                            <option value="SLTP">SLTP</option>
+                            <option value="SLTA" selected>SLTA</option>
+                            <option value="Diploma">Diploma</option>
+                            <option value="S1">S1</option>
+                            <option value="S2">S2</option>
+                            <option value="S3">S3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>No. KK</label>
+                        <input type="text" id="pdf-nokk" maxlength="16" placeholder="16 digit">
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>NIK</label>
+                        <input type="text" id="pdf-nik" maxlength="16" placeholder="16 digit">
+                    </div>
+                </div>
+                <div class="pdf-form-group">
+                    <label>Alamat</label>
+                    <input type="text" id="pdf-alamat" placeholder="Dusun / RT / RW / Kalurahan">
+                </div>
+                <div class="pdf-form-group">
+                    <label>Keperluan</label>
+                    <input type="text" id="pdf-keperluan" placeholder="contoh: Pengurusan KTP, Pembuatan KK, dll.">
+                </div>
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>No. RT</label>
+                        <input type="text" id="pdf-rt" placeholder="01" maxlength="3" value="01">
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>No. RW</label>
+                        <input type="text" id="pdf-rw" placeholder="01" maxlength="3" value="01">
+                    </div>
+                </div>
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>Padukuhan</label>
+                        <input type="text" id="pdf-padukuhan" value="Wungurejo">
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>Desa</label>
+                        <input type="text" id="pdf-desa" value="Pengkol">
+                    </div>
+                </div>
+                <div class="pdf-form-row">
+                    <div class="pdf-form-group">
+                        <label>Kecamatan</label>
+                        <input type="text" id="pdf-kecamatan" value="Nglipar">
+                    </div>
+                    <div class="pdf-form-group">
+                        <label>Nama Dukuh</label>
+                        <input type="text" id="pdf-nama-dukuh" placeholder="Nama Kepala Dusun">
+                    </div>
+                </div>
+                <div class="pdf-preview-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    PDF dicetak <strong>satu lembar penuh (A4 portrait)</strong> sesuai format resmi Padukuhan Wungurejo, Kab. Gunungkidul.
+                </div>
+            </div>
+            <div class="pdf-modal-footer">
+                <button class="pdf-btn-cancel" id="pdf-btn-cancel">Batal</button>
+                <button class="pdf-btn-generate" id="pdf-btn-generate">
+                    <i class="fa-solid fa-download"></i> Generate &amp; Download PDF
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF GENERATOR LOGIC -->
+    <script>
+        (function () {
+            var overlay   = document.getElementById('pdf-modal-overlay');
+            var navBtn    = document.getElementById('pdf-nav-btn');
+            var closeBtn  = document.getElementById('pdf-modal-close');
+            var cancelBtn = document.getElementById('pdf-btn-cancel');
+            var genBtn    = document.getElementById('pdf-btn-generate');
+            if (!overlay) return;
+
+            function openModal()  { overlay.classList.add('active');    document.body.style.overflow = 'hidden'; }
+            function closeModal() { overlay.classList.remove('active'); document.body.style.overflow = ''; }
+            if (navBtn) navBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+            overlay.addEventListener('click', function (e) { if (e.target === overlay) closeModal(); });
+
+            var BULAN = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+
+            function fmtDate(ds) {
+                if (!ds) return '.....................';
+                var d = new Date(ds + 'T00:00:00');
+                return d.getDate() + ' ' + BULAN[d.getMonth()] + ' ' + d.getFullYear();
+            }
+
+            function drawSurat(doc, ox, W, d, logoImg) {
+
+                // ADD TEXT WATERMARK (bottom center)
+                doc.saveGraphicsState();
+                doc.setFont('helvetica', 'italic');
+                doc.setFontSize(8);
+                doc.setTextColor(160, 160, 160);
+                var wmText = 'Generated by KKN AB 84.095 - UPN "Veteran" Yogyakarta';
+                var wmX = ox + (W / 2);
+                doc.text(wmText, wmX, 287, { align: 'center' });
+                doc.restoreGraphicsState();
+
+                var fs  = 10;
+                var lh  = 5.8;
+                var y   = 12;
+                var mid = ox + W / 2;
+                var rt  = d.rt  || '......';
+                var rw  = d.rw  || '......';
+                var thn = new Date().getFullYear();
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(fs - 0.5);
+                doc.setTextColor(0, 0, 0);
+                doc.text('PENGURUS RT.' + rt + ' RW.' + rw, ox + 1, y);
+                y += lh;
+                doc.text('NO. : ....../RT.' + rt + '/RW.' + rw + '/' + thn, ox + 1, y);
+                y += lh + 1;
+
+                doc.setFont('helvetica', 'bold');
+                doc.setFontSize(fs + 2.5);
+                doc.text('SURAT PENGANTAR', mid, y, { align: 'center' });
+                y += lh + 0.5;
+                doc.setFontSize(fs + 1.2);
+                doc.text('PADUKUHAN ' + (d.padukuhan || 'WUNGUREJO').toUpperCase(), mid, y, { align: 'center' });
+                y += lh;
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(fs);
+                doc.text('KECAMATAN ' + (d.kecamatan || 'NGLIPAR').toUpperCase(), mid, y, { align: 'center' });
+                y += lh;
+                doc.text('KABUPATEN GUNUNGKIDUL', mid, y, { align: 'center' });
+                y += lh;
+
+                doc.setDrawColor(0); doc.setLineWidth(0.5);
+                doc.line(ox + 1, y, ox + W - 1, y);
+                y += 3;
+
+                doc.setFont('helvetica', 'normal');
+                doc.setFontSize(fs - 0.5);
+                var intro = 'Yang bertanda tangan di bawah ini RT ' + rt + ' RW ' + rw +
+                    ' Padukuhan ' + (d.padukuhan || 'Wungurejo') +
+                    ' Desa ' + (d.desa || 'Pengkol') +
+                    ' Kecamatan ' + (d.kecamatan || 'Nglipar') +
+                    ' Kabupaten Gunungkidul menerangkan bahwa :';
+                var iL = doc.splitTextToSize(intro, W - 2);
+                doc.text(iL, ox + 1, y);
+                y += iL.length * lh + 2;
+
+                var cL = ox + 5, cC = ox + 62, cV = ox + 66;
+                var vW = W - 72;
+
+                function row(label, value) {
+                    doc.setFont('helvetica', 'normal');
+                    doc.setFontSize(fs - 0.5);
+                    doc.text(label, cL, y);
+                    doc.text(':', cC, y);
+                    var lines = doc.splitTextToSize(String(value || '...'), vW);
+                    doc.text(lines, cV, y);
+                    y += lines.length * lh + 0.3;
+                }
+
+                row('Nama', d.nama || '...................................');
+                row('Tempat / Tgl. Lahir', (d.tempatLahir || '..............') + ' / ' + fmtDate(d.tglLahir));
+                row('Kecamatan', d.kecamatan || 'Nglipar');
+                row('Jenis Kelamin', 'Laki-laki / Perempuan *  (' + (d.jk || '...') + ')');
+                row('Status Perkawinan', 'Belum Kawin / Kawin / Cerai Hidup / Cerai Mati * (' + (d.status || '...') + ')');
+                row('Agama', 'Islam / Kristen / Katolik / Hindu / Budha / Kepercayaan * (' + (d.agama || '...') + ')');
+                row('Golongan Darah', 'A / B / AB / O *  (' + (d.goldar || '...') + ')');
+                row('Pekerjaan', d.pekerjaan || '...................................');
+                row('Pendidikan', 'SD / SLTP / SLTA / Diploma / S1 / S2 / S3 * (' + (d.pendidikan || '...') + ')');
+                row('Alamat', d.alamat || '...................................');
+                row('NIK', d.nik || '...................................');
+                row('No. KK', d.nokk || '...................................');
+                row('Keperluan', d.keperluan || '...................................');
+                y += 1;
+
+                var pt = 'Demikian surat pengantar ini diberikan kepada yang bersangkutan agar dapat digunakan sebagaimana mestinya.';
+                var ptL = doc.splitTextToSize(pt, W - 2);
+                doc.setFontSize(fs - 0.5);
+                doc.text(ptL, ox + 1, y);
+                y += ptL.length * lh + 1;
+                doc.setFontSize(fs - 2);
+                doc.setTextColor(100);
+                doc.text('* Coret yang tidak perlu', ox + 1, y);
+                doc.setTextColor(0);
+                y += lh + 2;
+
+                var now = new Date();
+                var tglStr = (d.kecamatan || 'Nglipar') + ', ....... ' + BULAN[now.getMonth()] + ' ' + now.getFullYear();
+                doc.setFontSize(fs - 0.5);
+                doc.text(tglStr, mid, y, { align: 'center' });
+                y += lh + 1;
+
+                var c1 = ox + 2, c2 = mid - 16, c3 = ox + W - 36;
+                doc.text('Mengetahui :', c1, y);
+                doc.text('Mengetahui :', c2, y);
+                y += lh;
+                doc.setFont('helvetica', 'bold');
+                doc.text('Dukuh', c1 + 2, y);
+                doc.text('Ketua RW', c2 + 2, y);
+                doc.text('Ketua RT', c3 + 2, y);
+                doc.setFont('helvetica', 'normal');
+                y += 18;
+                doc.text('(' + (d.namaDukuh || '......................') + ')', c1, y);
+                doc.text('(............................)', c2, y);
+                doc.text('(............................)', c3, y);
+                y += lh + 1;
+
+                doc.setFontSize(fs - 2.5);
+                doc.setTextColor(120);
+                doc.text('Dinas Kependudukan Dan Pencatatan Sipil Kabupaten Gunungkidul', ox + 1, y);
+                doc.setTextColor(0);
+            }
+
+            genBtn.addEventListener('click', function () {
+                var d = {
+                    nama:       document.getElementById('pdf-nama').value.trim(),
+                    nik:        document.getElementById('pdf-nik').value.trim(),
+                    nokk:       document.getElementById('pdf-nokk').value.trim(),
+                    alamat:     document.getElementById('pdf-alamat').value.trim(),
+                    keperluan:  document.getElementById('pdf-keperluan').value.trim(),
+                    tempatLahir:document.getElementById('pdf-tempat-lahir').value.trim(),
+                    tglLahir:   document.getElementById('pdf-tgl-lahir').value,
+                    jk:         document.getElementById('pdf-jk').value,
+                    status:     document.getElementById('pdf-status').value,
+                    agama:      document.getElementById('pdf-agama').value,
+                    goldar:     document.getElementById('pdf-goldar').value,
+                    pekerjaan:  document.getElementById('pdf-pekerjaan').value.trim(),
+                    pendidikan: document.getElementById('pdf-pendidikan').value,
+                    rt:         document.getElementById('pdf-rt').value.trim(),
+                    rw:         document.getElementById('pdf-rw').value.trim(),
+                    padukuhan:  document.getElementById('pdf-padukuhan').value.trim(),
+                    desa:       document.getElementById('pdf-desa').value.trim(),
+                    kecamatan:  document.getElementById('pdf-kecamatan').value.trim(),
+                    namaDukuh:  document.getElementById('pdf-nama-dukuh').value.trim()
+                };
+
+                if (!d.nama || !d.alamat || !d.keperluan) {
+                    alert('Harap isi minimal: Nama, Alamat, dan Keperluan.');
+                    return;
+                }
+                if (!window.jspdf || !window.jspdf.jsPDF) {
+                    alert('Library PDF belum siap. Cek koneksi internet lalu coba lagi.');
+                    return;
+                }
+
+                // Load Logo image for watermark
+                var logoImg = new Image();
+                logoImg.src = 'assets/logo/LogoKKNBaru.png';
+                logoImg.onload = function() {
+                    generateAndSavePDF(d, logoImg);
+                };
+                logoImg.onerror = function() {
+                    generateAndSavePDF(d, null);
+                };
+            });
+
+            function generateAndSavePDF(d, logoImg) {
+                var jsPDF = window.jspdf.jsPDF;
+                var doc = new jsPDF({ orientation: 'portrait', unit: 'mm', format: 'a4' });
+                var pageW = 210; // A4 portrait width
+                var margin = 12;
+                var contentW = pageW - (margin * 2);
+
+                drawSurat(doc, margin, contentW, d, logoImg);
+
+                var fn = 'SuratPengantar_' + (d.nama.replace(/\s+/g, '_') || 'Pemohon') + '.pdf';
+                doc.save(fn);
+                closeModal();
+            }
+        })();
+    </script>
+</body>
+</html>
+
+
+

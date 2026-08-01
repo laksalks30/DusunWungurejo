@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://laksalks30.github.io/WebsiteDusunWungurejo/sitemap.xml
