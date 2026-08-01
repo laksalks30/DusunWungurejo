@@ -1939,8 +1939,8 @@
         const isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
         if (isInstalled) return;
 
-        // Jangan tampilkan kalau sudah pernah dismiss
-        if (localStorage.getItem('pwa-banner-dismissed')) return;
+        // Jangan tampilkan kalau sudah dismiss di sesi ini (akan muncul lagi saat buka baru)
+        if (sessionStorage.getItem('pwa-banner-dismissed')) return;
 
         let deferredPrompt = null;
         const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
@@ -1988,8 +1988,8 @@
             });
         }
 
-        if (laterBtn) laterBtn.addEventListener('click', () => { hideBanner(); localStorage.setItem('pwa-banner-dismissed', '1'); });
-        if (closeBtn) closeBtn.addEventListener('click', () => { hideBanner(); localStorage.setItem('pwa-banner-dismissed', '1'); });
+        if (laterBtn) laterBtn.addEventListener('click', () => { hideBanner(); sessionStorage.setItem('pwa-banner-dismissed', '1'); });
+        if (closeBtn) closeBtn.addEventListener('click', () => { hideBanner(); sessionStorage.setItem('pwa-banner-dismissed', '1'); });
         window.addEventListener('appinstalled', () => { hideBanner(); deferredPrompt = null; });
 
         // Tampilkan otomatis setelah 3 detik
