@@ -1,12 +1,47 @@
 {
-  "name": "KKN Wungurejo 84.095",
-  "short_name": "Wungurejo",
-  "description": "Portal Informasi Desa Wungurejo & Program Kerja KKN UPN Veteran Yogyakarta 84.095",
-  "start_url": "./",
+  "name": "KKN AB 84.095 - Dusun Wungurejo",
+  "short_name": "Wungurejo KKN",
+  "description": "Website resmi KKN AB 84.095 UPN Veteran Yogyakarta di Dusun Wungurejo, Pengkol, Nglipar, Gunungkidul. Temukan profil desa, UMKM lokal, program kerja, logbook, galeri, dan buku tamu.",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
-  "background_color": "#FAF6F6",
-  "theme_color": "#FF3385",
+  "orientation": "portrait-primary",
+  "background_color": "#1a0008",
+  "theme_color": "#6C0820",
+  "lang": "id",
+  "dir": "ltr",
+  "categories": ["education", "government", "social"],
   "icons": [
+    {
+      "src": "assets/logo/LogoKKNBaru.png",
+      "sizes": "72x72",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo/LogoKKNBaru.png",
+      "sizes": "96x96",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo/LogoKKNBaru.png",
+      "sizes": "128x128",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo/LogoKKNBaru.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo/LogoKKNBaru.png",
+      "sizes": "152x152",
+      "type": "image/png",
+      "purpose": "any"
+    },
     {
       "src": "assets/logo/LogoKKNBaru.png",
       "sizes": "192x192",
@@ -15,9 +50,46 @@
     },
     {
       "src": "assets/logo/LogoKKNBaru.png",
+      "sizes": "256x256",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/logo/LogoKKNBaru.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Program Kerja",
+      "short_name": "Proker",
+      "description": "Lihat semua program kerja KKN",
+      "url": "./index.html#proker",
+      "icons": [{ "src": "assets/logo/LogoKKNBaru.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "E-Katalog UMKM",
+      "short_name": "UMKM",
+      "description": "Katalog produk UMKM Dusun Wungurejo",
+      "url": "./index.html#umkm",
+      "icons": [{ "src": "assets/logo/LogoKKNBaru.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Galeri Foto",
+      "short_name": "Galeri",
+      "description": "Galeri kegiatan KKN",
+      "url": "./index.html#galeri",
+      "icons": [{ "src": "assets/logo/LogoKKNBaru.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Buku Tamu",
+      "short_name": "Buku Tamu",
+      "description": "Tinggalkan pesan untuk KKN",
+      "url": "./index.html#guestbook",
+      "icons": [{ "src": "assets/logo/LogoKKNBaru.png", "sizes": "96x96" }]
+    }
   ]
 }
+
