@@ -1930,11 +1930,23 @@
 
     <script>
     (function() {
-        let deferredPrompt = null;
         const banner = document.getElementById('pwa-install-banner');
         const installBtn = document.getElementById('pwa-install-btn');
         const laterBtn = document.getElementById('pwa-later-btn');
         const closeBtn = document.getElementById('pwa-banner-close');
+
+        // Jangan tampilkan kalau sudah diinstall (standalone mode)
+        const isInstalled = window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone;
+        if (isInstalled) return;
+
+        // Jangan tampilkan kalau sudah pernah dismiss
+        if (localStorage.getItem('pwa-banner-dismissed')) return;
+
+        let deferredPrompt = null;
+        const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+
+        // Sesuaikan teks untuk iOS
+        if (isIOS && installBtn) installBtn.textContent = '📖 Cara Install';
 
         function showBanner() {
             if (!banner) return;
@@ -1952,55 +1964,38 @@
             setTimeout(() => { banner.style.display = 'none'; }, 500);
         }
 
-        // Tangkap event dari browser sebelum install prompt default muncul
+        // Tangkap event Chrome Android
         window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault(); // cegah prompt default browser
+            e.preventDefault();
             deferredPrompt = e;
-
-            // Cek apakah user pernah dismiss banner ini
-            const dismissed = localStorage.getItem('pwa-banner-dismissed');
-            if (dismissed) return;
-
-            // Tampilkan banner setelah 3 detik
-            setTimeout(showBanner, 3000);
         });
 
         // Tombol Install
         if (installBtn) {
             installBtn.addEventListener('click', async () => {
-                hideBanner();
                 if (deferredPrompt) {
+                    hideBanner();
                     deferredPrompt.prompt();
                     const { outcome } = await deferredPrompt.userChoice;
-                    console.log('[PWA] User choice:', outcome);
                     deferredPrompt = null;
+                } else if (isIOS) {
+                    alert('Untuk install di iPhone/iPad:\n\n1. Tap ikon Share (kotak + panah atas) di Safari\n2. Pilih "Add to Home Screen"\n3. Tap "Add"');
+                    hideBanner();
+                } else {
+                    alert('Tap menu ⋮ di pojok kanan atas Chrome\nlalu pilih "Tambahkan ke layar utama"');
+                    hideBanner();
                 }
             });
         }
 
-        // Tombol Nanti
-        if (laterBtn) {
-            laterBtn.addEventListener('click', () => {
-                hideBanner();
-                localStorage.setItem('pwa-banner-dismissed', '1');
-            });
-        }
+        if (laterBtn) laterBtn.addEventListener('click', () => { hideBanner(); localStorage.setItem('pwa-banner-dismissed', '1'); });
+        if (closeBtn) closeBtn.addEventListener('click', () => { hideBanner(); localStorage.setItem('pwa-banner-dismissed', '1'); });
+        window.addEventListener('appinstalled', () => { hideBanner(); deferredPrompt = null; });
 
-        // Tombol Close (X)
-        if (closeBtn) {
-            closeBtn.addEventListener('click', () => {
-                hideBanner();
-                localStorage.setItem('pwa-banner-dismissed', '1');
-            });
-        }
-
-        // Kalau sudah berhasil diinstall, sembunyikan banner
-        window.addEventListener('appinstalled', () => {
-            hideBanner();
-            deferredPrompt = null;
-            console.log('[PWA] App installed successfully!');
-        });
+        // Tampilkan otomatis setelah 3 detik
+        setTimeout(showBanner, 3000);
     })();
+
     </script>
 
 </body>
